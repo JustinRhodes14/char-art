@@ -1,0 +1,328 @@
+/* Home Page */
+.home-hero-heading {
+  font-family: 'Caveat Brush', cursive;
+  color: var(--lofi-chocolate);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 0px var(--lofi-cream);
+}
+
+.home-section-heading {
+  font-family: 'Caveat Brush', cursive;
+  color: var(--lofi-chocolate);
+}
+
+.home-page .lead {
+  font-size: 1.25rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 2rem;
+}
+
+/* Gallery & Shop Pages */
+.gallery-page,
+.shop-page {
+  min-height: 80vh;
+}
+
+/* Product Detail */
+.product-detail-page img {
+  margin-bottom: 2rem;
+}
+
+.product-detail-page h1 {
+  margin-bottom: 1rem;
+}
+
+.product-detail-page h3 {
+  margin: 1rem 0;
+}
+
+/* Checkout */
+.checkout-page {
+  min-height: 80vh;
+}
+
+.checkout-page .card {
+  border: 1px solid #e0e0e0;
+}
+
+/* About Page */
+.about-hero {
+  background: repeating-linear-gradient(
+    to right,
+    var(--lofi-honey), var(--lofi-honey) 120px,
+    var(--lofi-cream) 120px, var(--lofi-cream) 240px
+  );
+  background-image: none,
+    repeating-linear-gradient(
+      to right,
+      var(--lofi-honey), var(--lofi-honey) 120px,
+      var(--lofi-cream) 120px, var(--lofi-cream) 240px
+    );
+  text-align: center;
+  padding: 3.5rem 1rem 4rem;
+  border-bottom: 3px solid var(--lofi-honey);
+}
+
+.about-hero-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 4rem;
+  color: var(--lofi-chocolate);
+  text-shadow: 2px 2px 0px var(--lofi-cream);
+  margin-bottom: 0.5rem;
+}
+
+.about-tagline {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.4rem;
+  color: var(--lofi-chocolate);
+  text-shadow: 1px 1px 0px var(--lofi-cream);
+  margin: 0;
+}
+
+.about-section-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2.2rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 1rem;
+}
+
+.about-artist-photo {
+  border-radius: 12px;
+  border: 3px solid var(--lofi-honey);
+  box-shadow: 5px 5px 0px var(--lofi-chocolate);
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.about-card {
+  background-color: var(--lofi-cream);
+  background-image: var(--paper-texture);
+  border: 2px solid var(--lofi-honey);
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(74, 48, 24, 0.12);
+}
+
+.about-card-icon {
+  margin-bottom: 0.75rem;
+}
+
+.about-card h4 {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.4rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.5rem;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  color: var(--lofi-chocolate);
+  margin: 0;
+}
+
+.about-card--value {
+  border-color: var(--lofi-strawberry);
+}
+
+.about-divider {
+  border: none;
+  border-top: 2px solid var(--lofi-honey);
+  opacity: 0.45;
+  margin: 3rem 0;
+}
+
+@media (max-width: 768px) {
+  .about-hero-heading {
+    font-size: 2.8rem;
+  }
+
+  .about-section-heading {
+    font-size: 1.8rem;
+  }
+}
+
+/* Contact Page */
+.contact-page {
+  min-height: 80vh;
+}
+
+.contact-subheading {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.15rem;
+  color: var(--lofi-chocolate);
+}
+
+.contact-form-card {
+  background-color: var(--lofi-cream);
+  background-image: var(--paper-texture);
+  border: 2px solid var(--lofi-honey);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.contact-label {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.05rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.3rem;
+}
+
+.contact-notice {
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.05rem;
+}
+
+.contact-notice--success {
+  background-color: var(--lofi-strawberry);
+  color: var(--lofi-cream);
+  border: 2px solid var(--lofi-honey);
+}
+
+.contact-notice--error {
+  background-color: var(--lofi-strawberry);
+  color: var(--lofi-cream);
+  border: 2px solid #b84850;
+}
+
+.contact-info-heading {
+  font-family: 'Caveat Brush', cursive;
+  color: var(--lofi-chocolate);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.contact-info-link {
+  font-family: 'Indie Flower', cursive;
+  color: var(--lofi-chocolate);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.contact-info-link:hover {
+  color: var(--lofi-strawberry);
+}
+
+/* Carousel Styling */
+.carousel-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-image {
+  width: 100%;
+  height: 450px;
+  object-fit: contain;
+  background-color: var(--lofi-cream);
+}
+
+.carousel-container .carousel-control-prev,
+.carousel-container .carousel-control-next {
+  background: var(--lofi-honey);
+  opacity: 0.85;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-container .carousel-control-prev {
+  left: 15px;
+}
+
+.carousel-container .carousel-control-next {
+  right: 15px;
+}
+
+/* Social Media Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--lofi-chocolate);
+  border: 2px solid var(--lofi-chocolate);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: var(--lofi-strawberry);
+  border-color: var(--lofi-strawberry);
+  color: var(--lofi-cream);
+  transform: translateY(-2px);
+}
+
+.social-link i {
+  font-size: 1.3rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .home-hero-heading {
+    font-size: 2.2rem;
+  }
+
+  .home-section-heading {
+    font-size: 1.8rem;
+  }
+
+  .home-page .lead {
+    font-size: 1.1rem;
+  }
+
+  .carousel-image {
+    height: 260px;
+  }
+
+  .carousel-container .carousel-control-prev,
+  .carousel-container .carousel-control-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-links {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .social-link {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .product-detail-page {
+    padding: 1rem 0;
+  }
+
+  .checkout-page .sticky-top {
+    position: relative;
+    top: 0 !important;
+    margin-top: 2rem;
+  }
+}

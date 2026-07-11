@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Indie+Flower&family=Quicksand:wght@300;500&display=swap');
+
+:root {
+  --lofi-xanadu: #738678;
+  --lofi-chocolate: #4B2609;
+  --lofi-strawberry: #CE5A62;
+  --lofi-honey: #FFD290;
+  --lofi-cream: #FFE0B2;
+  --lofi-crema: #fda60f;
+  --lofi-mocha: #A4692E;
+  --paper-texture: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+}
+
+body {
+  background-color: var(--lofi-crema) !important;
+  background-image: var(--paper-texture) !important;
+  color: var(--lofi-chocolate);
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Navbar Customization */
+.navbar.navbar-cafe {
+  /* Updated to cream and Cream stripes */
+  background: repeating-linear-gradient(
+    to right,
+    var(--lofi-honey), var(--lofi-honey) 120px,
+    var(--lofi-cream) 120px, var(--lofi-cream) 240px
+  ) !important;
+
+  -webkit-mask-image: radial-gradient(100px at 50% 40px, black 99%, transparent 100%);
+  -webkit-mask-size: 120px 100%;
+  mask-image: radial-gradient(100px at 50% 40px, black 99%, transparent 100%);
+  mask-size: 120px 100%;
+
+  padding-bottom: 140px !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border: none !important;
+}
+
+/* On desktop, Bootstrap renders Navbar.Offcanvas inline with background-color:transparent
+   but does NOT clear background-image, so the paper texture from the inline style bleeds
+   onto the navbar. Strip it out at the lg breakpoint. */
+@media (min-width: 992px) {
+  .navbar-expand-lg .cafe-offcanvas {
+    background-image: none !important;
+  }
+}
+
+/* Offcanvas mobile menu */
+.cafe-offcanvas {
+  border-left: 2px solid var(--lofi-honey) !important;
+}
+
+.cafe-offcanvas .offcanvas-header {
+  background: repeating-linear-gradient(
+    to right,
+    var(--lofi-cream), var(--lofi-cream) 120px,
+    var(--lofi-cream) 120px, var(--lofi-cream) 240px
+  );
+  border-bottom: 2px solid var(--lofi-honey);
+}
+
+.cafe-offcanvas .offcanvas-title {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2rem;
+  color: var(--lofi-chocolate);
+  text-shadow: 1px 1px 0px var(--lofi-mocha);
+}
+
+.navbar-brand {
+  font-family: 'Caveat Brush' !important;
+  font-size: 4.0rem !important;
+  color: var(--lofi-chocolate) !important;
+  text-shadow: 2px 2px 0px var(--lofi-mocha) !important;
+}
+
+.navbar-cafe .nav-link {
+  color: var(--lofi-chocolate) !important;
+  font-family: "Indie Flower" !important;
+  font-size: 3.0rem !important;
+  /* cream halo makes chocolate text pop on the green stripes */
+  text-shadow: 1px 1px 0px var(--lofi-mocha) !important;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-brand {
+    font-size: 3.0rem !important;
+  }
+  .navbar.navbar-cafe {
+    padding-bottom: 80px !important;
+  }
+}
+
+/* Custom Buttons — .btn.btn-lofi-* has specificity 0,2,0 which beats Bootstrap's .btn-primary (0,1,0) */
+.btn.btn-lofi-main {
+  background-color: var(--lofi-chocolate);
+  color: var(--lofi-mocha);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+}
+
+.btn.btn-lofi-main:hover {
+  background-color: var(--lofi-cream);
+  color: var(--lofi-mocha);
+}
+
+.btn.btn-lofi-outline {
+  border: 2px solid var(--lofi-cream);
+  color: var(--lofi-cream);
+  border-radius: 12px;
+  background: transparent;
+}
+
+.btn.btn-lofi-outline:hover {
+  background-color: var(--lofi-cream);
+  color: var(--lofi-mocha);
+}
+
+.btn.btn-lofi-danger {
+  background-color: var(--lofi-strawberry);
+  color: var(--lofi-mocha);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+}
+
+.btn.btn-lofi-danger:hover {
+  background-color: #b84850;
+  color: var(--lofi-cream);
+}
+
+/* Seasonal Strawberry Badge */
+/* .badge.badge-strawberry beats Bootstrap's .bg-primary specificity */
+.badge.badge-strawberry {
+  background-color: var(--lofi-strawberry) !important;
+  color: white !important;
+  font-size: 0.85rem !important;
+}
+
+/* Footer */
+.footer-lofi {
+  background-color: var(--lofi-mocha);
+  background-image: var(--paper-texture);
+  color: var(--lofi-cream);
+  border-top: 3px solid var(--lofi-honey);
+}
+
+.footer-lofi h5 {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.6rem;
+  color: var(--lofi-cream);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+  margin-bottom: 0.75rem;
+}
+
+.footer-lofi-link {
+  color: rgba(253, 248, 225, 0.8);
+  text-decoration: none;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.footer-lofi-link:hover {
+  color: var(--lofi-strawberry);
+}
+
+.footer-lofi hr {
+  border-color: var(--lofi-honey);
+  opacity: 0.45;
+}
+
+.footer-lofi .footer-copy {
+  font-family: 'Indie Flower', cursive;
+  color: rgba(253, 248, 225, 0.65);
+  font-size: 1rem;
+}
