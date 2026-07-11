@@ -7,10 +7,14 @@ const path = require('path');
 const tls = require('tls');
 const { Agent, setGlobalDispatcher } = require('undici');
 
-const legacyRoot = fs.readFileSync(
-  path.join(__dirname, 'certs/aaa-certificate-services-root.pem'), 'utf8'
-);
-setGlobalDispatcher(new Agent({ connect: { ca: [...tls.rootCertificates, legacyRoot] } }));
+// The legacy root is needed on macOS (Node's CA list is missing it) but
+// Vercel's Linux environment already trusts it. Load conditionally so a
+// missing cert file doesn't crash the server in either environment.
+const certPath = path.join(__dirname, 'certs/aaa-certificate-services-root.pem');
+const ca = fs.existsSync(certPath)
+  ? [...tls.rootCertificates, fs.readFileSync(certPath, 'utf8')]
+  : tls.rootCertificates;
+setGlobalDispatcher(new Agent({ connect: { ca } }));
 
 const express = require('express');
 const cors = require('cors');

@@ -6,14 +6,15 @@ const fs = require('fs');
 const path = require('path');
 const { products } = require('../data/products');
 
-// api.stripe.com serves a cert chain through a legacy root not in Node's
-// bundled CA list. Pass a custom agent so the Stripe SDK uses our extended
-// trust store regardless of how it resolves the global https agent.
-const legacyRoot = fs.readFileSync(
-  path.join(__dirname, '../certs/aaa-certificate-services-root.pem'), 'utf8'
-);
+// On macOS, Node's CA list is missing the legacy root that api.stripe.com's
+// chain cross-signs through. Pass a custom agent with the extended CA list.
+// The cert file may not be present on Linux/Vercel (where it isn't needed).
+const certPath = path.join(__dirname, '../certs/aaa-certificate-services-root.pem');
+const ca = fs.existsSync(certPath)
+  ? [...tls.rootCertificates, fs.readFileSync(certPath, 'utf8')]
+  : tls.rootCertificates;
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
-  httpAgent: new https.Agent({ ca: [...tls.rootCertificates, legacyRoot] }),
+  httpAgent: new https.Agent({ ca }),
 });
 
 const MAX_QUANTITY_PER_ITEM = 20;
