@@ -37,7 +37,16 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || process.env.CLIENT_URL ||
 // Webhook must receive the raw body for signature verification — register before json middleware
 app.use('/api/webhook', express.raw({ type: 'application/json' }), webhookRoutes);
 
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log('CORS blocked — received:', origin, '| allowed:', allowedOrigins);
+      callback(null, false);
+    }
+  },
+}));
 app.use(express.json());
 
 app.use('/api', checkoutRoutes);
