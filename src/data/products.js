@@ -22,7 +22,7 @@ export const products = [
     id: 1,
     name: 'Chef Bunny',
     category: 'acrylic pin',
-    description: 'A cheerful bunny chef serving up a sweet, fluffy pancake, topped with some fresh berries, cream, maple syrup, and homemade butter.',
+    description: 'A cheerful bunny chef serving up a sweet, fluffy pancake. Topped with some fresh berries, cream, maple syrup, and homemade butter.',
     price: 5,
     image: art1,
     dimensions: '2"',
