@@ -1,14 +1,25 @@
-// Server-side mirror of src/data/products.js — the authoritative source for
-// price/weight when building a Stripe Checkout session. Never trust price or
-// weight values sent by the client; only `id` and `quantity` are taken from
-// the request and looked up here.
+// Server-side mirror of src/data/products.js — authoritative source for
+// price/weight when building a Stripe Checkout session. Only `id` and
+// `quantity` are taken from the client; everything else comes from here.
 const products = [
-  { id: 1, name: 'Sunset Dreams', price: 250, weight_oz: 8, inStock: true, image: '/assets/artwork/sunset-dreams.jpg' },
-  { id: 2, name: 'Urban Energy', price: 180, weight_oz: 6, inStock: true, image: '/assets/artwork/urban-energy.jpg' },
-  { id: 3, name: "Nature's Whisper", price: 120, weight_oz: 4, inStock: true, image: '/assets/artwork/natures-whisper.jpg' },
-  { id: 4, name: 'Serenity', price: 200, weight_oz: 6, inStock: true, image: '/assets/artwork/serenity.jpg' },
-  { id: 5, name: 'Digital Harmony', price: 150, weight_oz: 2, inStock: true, image: '/assets/artwork/digital-harmony.jpg' },
-  { id: 6, name: 'Emotional Echoes', price: 300, weight_oz: 10, inStock: false, image: '/assets/artwork/emotional-echoes.jpg' },
+  { id: 1,  name: 'Bunny Chef Charm',            price: 14, weight_oz: 2, inStock: true },
+  { id: 2,  name: 'Breakfast Club Print',         price: 15, weight_oz: 2, inStock: true },
+  { id: 3,  name: 'Okayu Egg Charm',              price: 14, weight_oz: 2, inStock: true },
+  { id: 4,  name: 'Bakery Friends Print',         price: 15, weight_oz: 2, inStock: true },
+  { id: 5,  name: 'Sunny Side Up Sticker',        price: 4,  weight_oz: 1, inStock: true },
+  { id: 6,  name: 'Grumpy Boiled Egg Sticker',    price: 4,  weight_oz: 1, inStock: true },
+  { id: 7,  name: 'Egg on Toast Charm',           price: 14, weight_oz: 2, inStock: true },
+  { id: 8,  name: 'Congee Dreams Sticker',        price: 5,  weight_oz: 1, inStock: true },
+  { id: 9,  name: "I'm Baked Sticker Sheet",      price: 9,  weight_oz: 1, inStock: true },
+  { id: 10, name: 'Tamago Gohan Sticker',         price: 5,  weight_oz: 1, inStock: true },
+  { id: 11, name: 'Bread Slices Print',           price: 10, weight_oz: 2, inStock: true },
+  { id: 12, name: 'Ramen Pot Sticker',            price: 5,  weight_oz: 1, inStock: true },
+  { id: 13, name: 'Strawberry Pancake Charm',     price: 15, weight_oz: 2, inStock: true },
+  { id: 14, name: 'Deviled Egg Trio Sticker',     price: 5,  weight_oz: 1, inStock: true },
+  { id: 15, name: 'Noodle Egg Charm',             price: 14, weight_oz: 2, inStock: true },
+  { id: 16, name: "I'm Eggcellent Sticker Sheet", price: 9,  weight_oz: 1, inStock: true },
+  { id: 17, name: 'Toasty Charm',                 price: 12, weight_oz: 2, inStock: true },
+  { id: 18, name: 'Muffin Society Print',         price: 15, weight_oz: 2, inStock: true },
 ];
 
 module.exports = { products };

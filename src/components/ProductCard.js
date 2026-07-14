@@ -1,29 +1,55 @@
-import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../features/cart/cartContext';
 import '../styles/components.css';
+import '../styles/pages.css';
 
 function ProductCard({ product }) {
+  const { addToCart } = useContext(CartContext);
+  const [added, setAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    addToCart({ ...product, quantity: 1 });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  };
+
   return (
-    <Card className="product-card h-100 shadow-sm hover-shadow transition">
-      <Card.Img 
-        variant="top" 
-        src={product.image} 
-        alt={product.name}
-        className="product-image"
-      />
-      <Card.Body className="d-flex flex-column">
-        <Card.Title>{product.name}</Card.Title>
-        <Card.Text className="text-muted">{product.category}</Card.Text>
-        <Card.Text className="flex-grow-1">{product.description}</Card.Text>
-        <div className="d-flex justify-content-between align-items-center">
-          <h5 className="text-primary mb-0">${product.price}</h5>
-          <Link to={`/product/${product.id}`}>
-            <Button size="sm">View</Button>
-          </Link>
+    <div className="product-card h-100">
+      <div className="product-card-img-wrap">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="product-card-img"
+        />
+        <span className="product-card-category">{product.category}</span>
+        {!product.inStock && (
+          <div className="product-card-soldout">Sold Out</div>
+        )}
+      </div>
+      <div className="product-card-body">
+        <h3 className="product-card-title">{product.name}</h3>
+        <p className="product-card-desc">{product.description}</p>
+        <div className="product-card-footer">
+          <div className="product-card-footer-row">
+            <span className="product-card-price">${product.price}</span>
+            <Link
+              to={`/product/${product.id}`}
+              className="btn btn-lofi-main product-card-btn"
+            >
+              View
+            </Link>
+          </div>
+          <button
+            className="btn btn-lofi-main product-card-add-btn"
+            onClick={handleAddToCart}
+            disabled={!product.inStock || added}
+          >
+            {added ? 'Added!' : '+ Add to Cart'}
+          </button>
         </div>
-      </Card.Body>
-    </Card>
+      </div>
+    </div>
   );
 }
 

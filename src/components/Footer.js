@@ -23,15 +23,18 @@ function Footer() {
           <Col md={3} className="mb-3">
             <h5>About</h5>
             <ul className="list-unstyled">
-              <li><Link to="/about" className="footer-lofi-link">About Us</Link></li>
+              <li><Link to="/about" className="footer-lofi-link">About the Artist</Link></li>
               <li><Link to="/contact" className="footer-lofi-link">Contact</Link></li>
             </ul>
           </Col>
           <Col md={3} className="mb-3">
             <h5>Follow</h5>
             <ul className="list-unstyled">
-              <li><a href="#instagram" className="footer-lofi-link">Instagram</a></li>
-              <li><a href="#facebook" className="footer-lofi-link">Facebook</a></li>
+              <li><a href="https://instagram.com/parklofistudio"
+              target="_blank"
+              rel="noopener noreferrer" className="footer-lofi-link"
+              >Instagram</a></li>
+              <li><a href="https://tiktok.com/@parklofistudio" target="_blank" rel="noopener noreferrer" className="footer-lofi-link">TikTok</a></li>
             </ul>
           </Col>
         </Row>

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 import { products } from '../data/products';
 import { CartContext } from '../features/cart/cartContext';
 import '../styles/pages.css';
@@ -9,15 +9,17 @@ function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useContext(CartContext);
-  const [quantity, setQuantity] = React.useState(1);
+  const [quantity, setQuantity] = useState(1);
 
   const product = products.find(p => p.id === parseInt(id));
 
   if (!product) {
     return (
       <Container className="py-5">
-        <h2>Product not found</h2>
-        <Button className="btn-lofi-outline" onClick={() => navigate('/shop')}>Back to Shop</Button>
+        <h2 className="pd-name">Product not found</h2>
+        <button className="btn btn-lofi-main" onClick={() => navigate('/shop')}>
+          Back to Shop
+        </button>
       </Container>
     );
   }
@@ -29,50 +31,73 @@ function ProductDetail() {
 
   return (
     <Container className="product-detail-page py-5">
-      <Row className="mb-4">
+      <Link to="/shop" className="pd-back-link">← Back to Shop</Link>
+
+      <Row className="g-5 mt-0">
         <Col md={6}>
-          <img 
-            src={product.image} 
-            alt={product.name} 
-            className="img-fluid rounded"
-          />
+          <div className="pd-image-wrap">
+            <img src={product.image} alt={product.name} className="pd-image" />
+            {!product.inStock && (
+              <div className="pd-soldout-overlay">Sold Out</div>
+            )}
+          </div>
         </Col>
+
         <Col md={6}>
-          <h1>{product.name}</h1>
-          <p className="text-muted">{product.category}</p>
-          <h3 className="text-primary">${product.price}</h3>
-          <p className="lead">{product.description}</p>
+          <div className="pd-info">
+            <span className="pd-category-tag">{product.category}</span>
+            <h1 className="pd-name">{product.name}</h1>
+            <p className="pd-price">${product.price}</p>
+            <p className="pd-description">{product.description}</p>
 
-          <Form className="mb-3">
-            <Form.Group className="mb-3">
-              <Form.Label>Quantity</Form.Label>
-              <Form.Control 
-                type="number" 
-                min="1" 
-                value={quantity}
-                onChange={(e) => setQuantity(parseInt(e.target.value))}
-                style={{ maxWidth: '100px' }}
-              />
-            </Form.Group>
-          </Form>
+            <div className="pd-meta">
+              {product.dimensions && (
+                <div className="pd-meta-row">
+                  <span className="pd-meta-label">Dimensions</span>
+                  <span className="pd-meta-value">{product.dimensions}</span>
+                </div>
+              )}
+              {product.medium && (
+                <div className="pd-meta-row">
+                  <span className="pd-meta-label">Medium</span>
+                  <span className="pd-meta-value">{product.medium}</span>
+                </div>
+              )}
+              <div className="pd-meta-row">
+                <span className="pd-meta-label">Availability</span>
+                <span className={product.inStock ? 'pd-in-stock' : 'pd-out-of-stock'}>
+                  {product.inStock ? 'In Stock' : 'Out of Stock'}
+                </span>
+              </div>
+            </div>
 
-          <Button
-            className="btn-lofi-main me-2"
-            onClick={handleAddToCart}
-          >
-            Add to Cart
-          </Button>
-          <Button
-            className="btn-lofi-outline"
-            onClick={() => navigate('/shop')}
-          >
-            Continue Shopping
-          </Button>
+            {product.inStock && (
+              <>
+                <div className="pd-stepper-wrap">
+                  <span className="pd-stepper-label">Quantity</span>
+                  <div className="cart-item-stepper">
+                    <button
+                      className="cart-stepper-btn"
+                      onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                      aria-label="Decrease quantity"
+                    >−</button>
+                    <span className="cart-stepper-val">{quantity}</span>
+                    <button
+                      className="cart-stepper-btn"
+                      onClick={() => setQuantity(q => q + 1)}
+                      aria-label="Increase quantity"
+                    >+</button>
+                  </div>
+                </div>
 
-          <hr className="my-4" />
-          <p><strong>Dimensions:</strong> {product.dimensions}</p>
-          <p><strong>Medium:</strong> {product.medium}</p>
-          <p><strong>In Stock:</strong> {product.inStock ? 'Yes' : 'No'}</p>
+                <button className="btn btn-lofi-main pd-add-btn" onClick={handleAddToCart}>
+                  Add to Cart
+                </button>
+              </>
+            )}
+
+            <Link to="/shop" className="pd-continue-link">← keep shopping</Link>
+          </div>
         </Col>
       </Row>
     </Container>

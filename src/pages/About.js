@@ -1,45 +1,45 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { PaintBrush, Key, Envelope, Sparkle } from '@phosphor-icons/react';
+import {  Key, Sticker, Medal, Palette } from '@phosphor-icons/react';
 import '../styles/pages.css';
 import theArtist from '../assets/images/artist.jpeg';
 
 const MAKES = [
   {
-    icon: <Sparkle size={36} weight="duotone" color="#4A3018" />,
+    icon: <Sticker size={36} weight="duotone" color="#4A3018" />,
     title: 'Stickers',
-    description: 'Die-cut vinyl stickers featuring original character art. Made to go on laptops, water bottles, journals — wherever you want a little spark of cozy.',
+    description: 'Die-cut vinyl stickers to make everyday objects a little more cozy and whimsical.',
+  },
+  {
+    icon: <Medal size={36} weight="duotone" color="#4A3018" />,
+    title: 'Pins',
+    description: 'Acrylic pins to add a touch of charm to your favorite jackets, bags, and hats.',
+  },
+  {
+    icon: <Palette size={36} weight="duotone" color="#4A3018" />,
+    title: 'Prints',
+    description: 'High-quality art prints to bring a cozy edition to your home or office space.',
   },
   {
     icon: <Key size={36} weight="duotone" color="#4A3018" />,
     title: 'Keychains',
-    description: 'Acrylic charm keychains with original artwork. Carry a little piece of the studio with you wherever you go.',
-  },
-  {
-    icon: <Envelope size={36} weight="duotone" color="#4A3018" />,
-    title: 'Postcards',
-    description: 'High-quality art print postcards. Write a note, send some love, or tuck one into a frame — they\'re made to be kept.',
-  },
-  {
-    icon: <PaintBrush size={36} weight="duotone" color="#4A3018" />,
-    title: 'Original Art',
-    description: 'One-of-a-kind paintings and drawings. Each piece is signed and ships straight from the studio.',
+    description: 'Soon to come :), acrylic keychains to follow you everywhere you go.',
   },
 ];
 
 const VALUES = [
   {
-    title: 'Handmade with care',
-    description: 'Everything is made in small batches. Slow, intentional, and never rushed — because good art takes time.',
+    title: 'Original artwork',
+    description: 'Original ideas and designs created by the artist herself, with love and care.',
   },
   {
     title: 'Inspired by the everyday',
-    description: 'Quiet mornings, cozy corners, and small joys. That\'s where the work comes from, and what it\'s meant to bring back.',
+    description: 'Everyday items and experiences are transformed into cozy, cute, and fun illustrations.',
   },
   {
     title: 'Shipped with love',
-    description: 'Every order is packed by hand and sent directly from the studio. No warehouses, no middlemen — just art straight to your door.',
+    description: 'Every order is packed by hand and sent directly from the studio ♥',
   },
 ];
 

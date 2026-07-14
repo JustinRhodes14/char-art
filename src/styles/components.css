@@ -78,6 +78,8 @@ body {
   color: var(--lofi-chocolate) !important;
   font-family: "Indie Flower" !important;
   font-size: 3.0rem !important;
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
   /* cream halo makes chocolate text pop on the green stripes */
   text-shadow: 1px 1px 0px var(--lofi-mocha) !important;
 }

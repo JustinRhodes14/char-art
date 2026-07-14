@@ -21,29 +21,693 @@
 /* Gallery & Shop Pages */
 .gallery-page,
 .shop-page {
+  min-height: 60vh;
+}
+
+/* ─── Shop Loading Screen ─── */
+.shop-loading {
   min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Product Detail */
-.product-detail-page img {
-  margin-bottom: 2rem;
+.shop-loading-text {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2rem;
+  color: var(--lofi-chocolate);
+  text-shadow: 1px 1px 0px var(--lofi-cream);
+  animation: shop-pulse 1.4s ease-in-out infinite;
+  margin: 0;
 }
 
-.product-detail-page h1 {
+@keyframes shop-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ─── Shop Hero ─── */
+.shop-hero {
+  background: repeating-linear-gradient(
+    to right,
+    var(--lofi-honey), var(--lofi-honey) 120px,
+    var(--lofi-cream) 120px, var(--lofi-cream) 240px
+  );
+  text-align: center;
+  padding: 3rem 1rem 3.5rem;
+  border-bottom: 3px solid var(--lofi-honey);
+}
+
+.shop-hero-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 3.5rem;
+  color: var(--lofi-chocolate);
+  text-shadow: 2px 2px 0px var(--lofi-cream);
+  margin-bottom: 0.4rem;
+}
+
+.shop-tagline {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.3rem;
+  color: var(--lofi-chocolate);
+  margin: 0;
+}
+
+/* ─── Category Pills ─── */
+.shop-category-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.shop-category-pill {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  padding: 0.35rem 1.1rem;
+  border: 2px solid var(--lofi-mocha);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--lofi-chocolate);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.shop-category-pill:hover,
+.shop-category-pill.active {
+  background-color: var(--lofi-chocolate);
+  border-color: var(--lofi-chocolate);
+  color: var(--lofi-cream);
+}
+
+/* ─── Filter Sidebar ─── */
+.shop-filters {
+  background-color: var(--lofi-cream);
+  background-image:
+    linear-gradient(rgba(255, 224, 178, 0.85), rgba(255, 224, 178, 0.85)),
+    var(--paper-texture);
+  border: 2px solid var(--lofi-honey);
+  border-radius: 12px;
+  padding: 1.4rem 1.5rem 1.5rem;
+}
+
+.shop-filters-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.5rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--lofi-honey);
+}
+
+.shop-filter-label {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  color: var(--lofi-chocolate);
+}
+
+.shop-filter-select {
+  width: 100%;
+  font-family: 'Indie Flower', cursive;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid var(--lofi-honey);
+  border-radius: 8px;
+  background-color: var(--lofi-cream);
+  color: var(--lofi-chocolate);
+  cursor: pointer;
+  appearance: none;
+}
+
+.shop-filter-range {
+  width: 100%;
+  accent-color: var(--lofi-chocolate);
+  cursor: pointer;
+}
+
+.shop-filter-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Indie Flower', cursive;
+  font-size: 0.85rem;
+  color: var(--lofi-mocha);
+  margin-top: 0.25rem;
+}
+
+.shop-results-count {
+  font-family: 'Indie Flower', cursive;
+  font-size: 0.95rem;
+  color: var(--lofi-mocha);
+}
+
+.shop-empty {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.1rem;
+  color: var(--lofi-chocolate);
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: var(--lofi-cream);
+  border: 2px dashed var(--lofi-honey);
+  border-radius: 12px;
+}
+
+/* ─── Product Card ─── */
+.product-card {
+  background-color: var(--lofi-cream);
+  /* cream wash at 70% opacity over the texture so the color stays dominant */
+  background-image:
+    linear-gradient(rgba(255, 224, 178, 0.7), rgba(255, 224, 178, 0.7)),
+    var(--paper-texture);
+  border: 2px solid var(--lofi-honey);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 5px 0px var(--lofi-mocha);
+}
+
+.product-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-bottom: 2px solid var(--lofi-honey);
+}
+
+.product-card-category {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  font-family: 'Indie Flower', cursive;
+  font-size: 0.78rem;
+  background-color: var(--lofi-chocolate);
+  color: var(--lofi-cream);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.product-card-soldout {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 48, 24, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.8rem;
+  color: var(--lofi-cream);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.product-card-body {
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-card-title {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.35rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+
+.product-card-desc {
+  font-size: 0.825rem;
+  color: var(--lofi-chocolate);
+  line-height: 1.5;
+  flex: 1;
   margin-bottom: 1rem;
 }
 
-.product-detail-page h3 {
-  margin: 1rem 0;
+.product-card-footer {
+  border-top: 1px solid var(--lofi-honey);
+  padding-top: 0.75rem;
 }
 
-/* Checkout */
-.checkout-page {
+.product-card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.55rem;
+}
+
+.product-card-price {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.5rem;
+  color: var(--lofi-chocolate);
+}
+
+.product-card-btn {
+  padding: 0.3rem 1rem !important;
+  font-size: 0.9rem !important;
+  font-family: 'Indie Flower', cursive !important;
+  text-decoration: none !important;
+}
+
+.product-card-add-btn {
+  width: 100%;
+  padding: 0.35rem 0 !important;
+  font-size: 0.9rem !important;
+  font-family: 'Indie Flower', cursive !important;
+  transition: all 0.2s ease !important;
+}
+
+.product-card-add-btn:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+
+@media (max-width: 991.98px) {
+  .shop-hero-heading {
+    font-size: 2.6rem;
+  }
+}
+
+/* ─── Product Detail ─── */
+.pd-back-link {
+  display: inline-block;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  color: var(--lofi-mocha);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.pd-back-link:hover {
+  color: var(--lofi-strawberry);
+}
+
+.pd-image-wrap {
+  position: relative;
+  border: 3px solid var(--lofi-honey);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0px var(--lofi-mocha);
+}
+
+.pd-image {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  background-color: var(--lofi-cream);
+}
+
+.pd-soldout-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 48, 24, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2.2rem;
+  color: var(--lofi-cream);
+  letter-spacing: 0.05em;
+}
+
+.pd-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.pd-category-tag {
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: var(--lofi-chocolate);
+  color: var(--lofi-cream);
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  text-transform: capitalize;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.75rem;
+  align-self: flex-start;
+}
+
+.pd-name {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2.4rem;
+  color: var(--lofi-chocolate);
+  line-height: 1.15;
+  margin-bottom: 0.3rem;
+}
+
+.pd-price {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2rem;
+  color: var(--lofi-mocha);
+  margin-bottom: 1rem;
+}
+
+.pd-description {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  color: var(--lofi-chocolate);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+/* Metadata table */
+.pd-meta {
+  border-top: 2px solid var(--lofi-honey);
+  margin-bottom: 1.5rem;
+}
+
+.pd-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(200, 149, 108, 0.3);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+}
+
+.pd-meta-label {
+  color: var(--lofi-mocha);
+  font-weight: 500;
+}
+
+.pd-meta-value {
+  color: var(--lofi-chocolate);
+  text-align: right;
+}
+
+.pd-in-stock {
+  color: var(--lofi-xanadu);
+  font-weight: 500;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+}
+
+.pd-out-of-stock {
+  color: var(--lofi-strawberry);
+  font-weight: 500;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+}
+
+/* Quantity stepper */
+.pd-stepper-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pd-stepper-label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--lofi-chocolate);
+}
+
+.pd-add-btn {
+  width: 100%;
+  padding: 0.6rem 0 !important;
+  font-size: 1rem !important;
+  margin-bottom: 1rem;
+}
+
+.pd-continue-link {
+  display: block;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  color: var(--lofi-mocha);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.pd-continue-link:hover {
+  color: var(--lofi-strawberry);
+}
+
+@media (max-width: 767.98px) {
+  .pd-name {
+    font-size: 2rem;
+  }
+
+  .pd-image-wrap {
+    box-shadow: 3px 3px 0px var(--lofi-mocha);
+  }
+}
+
+/* ─── Cart Page ─── */
+.cart-page {
   min-height: 80vh;
 }
 
-.checkout-page .card {
-  border: 1px solid #e0e0e0;
+.cart-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2.8rem;
+  color: var(--lofi-chocolate);
+  text-shadow: 1px 1px 0px var(--lofi-cream);
+  margin-bottom: 1.5rem;
+}
+
+/* Empty state */
+.cart-empty {
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.cart-empty-title {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.5rem;
+}
+
+.cart-empty-sub {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.1rem;
+  color: var(--lofi-mocha);
+  margin-bottom: 1.5rem;
+}
+
+/* Item list */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--lofi-cream);
+  background-image:
+    linear-gradient(rgba(255, 224, 178, 0.75), rgba(255, 224, 178, 0.75)),
+    var(--paper-texture);
+  border: 2px solid var(--lofi-honey);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+}
+
+.cart-item-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--lofi-honey);
+  flex-shrink: 0;
+}
+
+.cart-item-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cart-item-name {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.15rem;
+  color: var(--lofi-chocolate);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-item-name:hover {
+  color: var(--lofi-strawberry);
+}
+
+.cart-item-category {
+  font-family: 'Indie Flower', cursive;
+  font-size: 0.8rem;
+  color: var(--lofi-mocha);
+  text-transform: capitalize;
+}
+
+/* +/- stepper */
+.cart-item-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.cart-stepper-btn {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--lofi-honey);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--lofi-chocolate);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-stepper-btn:hover {
+  background-color: var(--lofi-honey);
+}
+
+.cart-stepper-val {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.15rem;
+  color: var(--lofi-chocolate);
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.cart-item-total {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.2rem;
+  color: var(--lofi-chocolate);
+  flex-shrink: 0;
+  min-width: 3.5rem;
+  text-align: right;
+}
+
+.cart-item-remove {
+  background: transparent;
+  border: none;
+  color: var(--lofi-strawberry);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.cart-item-remove:hover {
+  color: #b84850;
+}
+
+/* Summary panel */
+.cart-summary {
+  background-color: var(--lofi-cream);
+  background-image:
+    linear-gradient(rgba(255, 224, 178, 0.75), rgba(255, 224, 178, 0.75)),
+    var(--paper-texture);
+  border: 2px solid var(--lofi-honey);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.cart-summary-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.6rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--lofi-honey);
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.5rem;
+}
+
+.cart-summary-note {
+  font-size: 0.85rem;
+  color: var(--lofi-mocha);
+}
+
+.cart-summary-divider {
+  border-color: var(--lofi-honey);
+  opacity: 0.6;
+  margin: 0.75rem 0;
+}
+
+.cart-summary-total {
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.cart-error {
+  font-family: 'Indie Flower', cursive;
+  font-size: 0.95rem;
+  color: var(--lofi-strawberry);
+  margin-bottom: 0.75rem;
+}
+
+.cart-continue-link {
+  display: block;
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  color: var(--lofi-mocha);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cart-continue-link:hover {
+  color: var(--lofi-strawberry);
+}
+
+@media (max-width: 767.98px) {
+  .cart-item {
+    flex-wrap: wrap;
+  }
+
+  .cart-item-info {
+    flex: 1 1 calc(100% - 88px);
+  }
+
+  .cart-item-stepper,
+  .cart-item-total,
+  .cart-item-remove {
+    margin-left: auto;
+  }
 }
 
 /* About Page */
