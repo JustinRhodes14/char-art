@@ -36,14 +36,14 @@
 
 .falling-sticker {
   position: absolute;
-  top: -120px;
+  top: -400px;
   opacity: 0.72;
   animation: sticker-fall linear infinite;
 }
 
 @keyframes sticker-fall {
-  from { transform: translateY(0)       rotate(0deg); }
-  to   { transform: translateY(110vh)   rotate(var(--sticker-rotate, 360deg)); }
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(100vh + 400px)) rotate(var(--sticker-rotate, 360deg)); }
 }
 
 /* Home Page */

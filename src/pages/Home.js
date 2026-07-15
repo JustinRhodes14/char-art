@@ -13,21 +13,32 @@ import sticker3 from '../assets/artwork/Sticker_3.PNG';
 import sticker4 from '../assets/artwork/Sticker_4.PNG';
 import sticker5 from '../assets/artwork/Sticker_5.PNG';
 import sticker6 from '../assets/artwork/Sticker_6.PNG';
+import sticker7 from '../assets/artwork/Sticker_7.PNG';
+import sticker8 from '../assets/artwork/Sticker_8.PNG';
+import sticker9 from '../assets/artwork/Sticker_9.PNG';
 
-const FALLING_STICKERS = [
-  { src: sticker1, left: '2%',  size: 176,  duration: 10, delay: 0,   rotate: 200  },
+const BASE_STICKERS = [
+  { src: sticker1, left: '2%',  size: 176, duration: 10, delay: 0,   rotate: 200  },
   { src: sticker2, left: '12%', size: 210, duration: 14, delay: 3,   rotate: -150 },
-  { src: sticker3, left: '24%', size: 160,  duration: 11, delay: 1.5, rotate: 270  },
-  { src: sticker4, left: '36%', size: 196,  duration: 16, delay: 5,   rotate: -200 },
-  { src: sticker5, left: '48%', size: 180,  duration: 12, delay: 0.8, rotate: 180  },
-  { src: sticker6, left: '60%', size: 168,  duration: 9,  delay: 2.5, rotate: -90  },
-  { src: sticker3, left: '70%', size: 190,  duration: 13, delay: 4,   rotate: 150  },
-  { src: sticker1, left: '79%', size: 164,  duration: 11, delay: 6.5, rotate: -240 },
+  { src: sticker3, left: '24%', size: 160, duration: 11, delay: 1.5, rotate: 270  },
+  { src: sticker4, left: '36%', size: 196, duration: 16, delay: 5,   rotate: -200 },
+  { src: sticker5, left: '48%', size: 180, duration: 12, delay: 0.8, rotate: 180  },
+  { src: sticker6, left: '60%', size: 168, duration: 9,  delay: 2.5, rotate: -90  },
+  { src: sticker3, left: '70%', size: 190, duration: 13, delay: 4,   rotate: 150  },
+  { src: sticker1, left: '79%', size: 164, duration: 11, delay: 6.5, rotate: -240 },
   { src: sticker5, left: '87%', size: 200, duration: 15, delay: 1,   rotate: 300  },
-  { src: sticker2, left: '93%', size: 172,  duration: 10, delay: 7,   rotate: -120 },
-  { src: sticker4, left: '42%', size: 184,  duration: 17, delay: 9,   rotate: 210  },
-  { src: sticker6, left: '8%',  size: 156,  duration: 12, delay: 11,  rotate: -180 },
+  { src: sticker2, left: '93%', size: 172, duration: 10, delay: 7,   rotate: -120 },
+  { src: sticker4, left: '42%', size: 184, duration: 17, delay: 9,   rotate: 210  },
+  { src: sticker6, left: '8%',  size: 156, duration: 12, delay: 11,  rotate: -180 },
+  { src: sticker7, left: '19%', size: 170, duration: 13, delay: 4.5, rotate: 135  },
+  { src: sticker8, left: '64%', size: 188, duration: 11, delay: 8,   rotate: -165 },
+  { src: sticker9, left: '82%', size: 162, duration: 15, delay: 2,   rotate: 250  },
+  { src: sticker7, left: '31%', size: 175, duration: 10, delay: 5.5, rotate: -110 },
+  { src: sticker8, left: '53%', size: 165, duration: 14, delay: 0.5, rotate: 190  },
+  { src: sticker9, left: '75%', size: 180, duration: 12, delay: 10,  rotate: -220 },
 ];
+
+const FALLING_STICKERS = BASE_STICKERS;
 
 function Home() {
   const [stickersOn, setStickersOn] = useState(

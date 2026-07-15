@@ -13,7 +13,7 @@ function CharNav() {
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <Navbar expand="lg" className="navbar-cafe" sticky="top">
+    <Navbar expand="lg" className="navbar-cafe">
       {/* Desktop: logo sits outside Container on the canopy */}
       <Link to="/" className="navbar-canopy-logo d-none d-lg-flex">
         <img src={`${process.env.PUBLIC_URL}/park_logo.PNG`} alt="Park LoFi Studio logo" />

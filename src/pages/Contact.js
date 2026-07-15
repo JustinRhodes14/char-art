@@ -118,8 +118,8 @@ function Contact() {
           <Row className="mt-4">
             <Col sm={6} className="mb-3">
               <h5 className="contact-info-heading">Email</h5>
-              <a href="mailto:info@parklofistudio.com" className="contact-info-link">
-                info@parklofistudio.com
+              <a href="mailto:cpark1692@gmail.com" className="contact-info-link">
+                cpark1692@gmail.com
               </a>
             </Col>
             <Col sm={6} className="mb-3">

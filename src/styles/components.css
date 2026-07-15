@@ -20,6 +20,8 @@ body {
 
 /* Navbar Customization */
 .navbar.navbar-cafe {
+  position: relative;
+  z-index: 2;
   /* Updated to cream and Cream stripes */
   background: repeating-linear-gradient(
     to right,
@@ -32,7 +34,7 @@ body {
   mask-image: radial-gradient(100px at 50% 40px, black 99%, transparent 100%);
   mask-size: 120px 100%;
 
-  padding-bottom: 140px !important;
+  padding-bottom: 45px !important;
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   border: none !important;
 }
@@ -110,7 +112,7 @@ body {
     font-size: 2.4rem !important;
   }
   .navbar.navbar-cafe {
-    padding-bottom: 80px !important;
+    padding-bottom: 25px !important;
   }
 }
 
