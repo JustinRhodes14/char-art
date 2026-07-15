@@ -41,7 +41,10 @@ function Footer() {
         <hr />
         <Row>
           <Col className="text-center">
-            <p className="footer-copy mb-0">© {currentYear} Park LoFi Studio. All rights reserved.</p>
+            <p className="footer-copy mb-0">
+              © {currentYear} Park LoFi Studio. All rights reserved. &nbsp;·&nbsp;{' '}
+              <Link to="/privacy" className="footer-lofi-link">Privacy Policy</Link>
+            </p>
           </Col>
         </Row>
       </Container>

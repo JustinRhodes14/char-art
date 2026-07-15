@@ -1,3 +1,52 @@
+/* Privacy Policy page */
+.privacy-page {
+  max-width: 760px;
+}
+
+.privacy-heading {
+  font-family: 'Caveat Brush', cursive;
+  color: var(--lofi-chocolate);
+  font-size: 3rem;
+  text-shadow: 2px 2px 0px var(--lofi-honey);
+  margin-bottom: 0.25rem;
+}
+
+.privacy-meta {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--lofi-xanadu);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.privacy-section-heading {
+  font-family: 'Caveat Brush', cursive;
+  color: var(--lofi-chocolate);
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--lofi-honey);
+  padding-bottom: 0.25rem;
+}
+
+.privacy-body {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--lofi-chocolate);
+  line-height: 1.7;
+}
+
+.privacy-list {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--lofi-chocolate);
+  line-height: 1.8;
+  padding-left: 1.5rem;
+}
+
+.privacy-link {
+  color: var(--lofi-xanadu);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 /* Falling stickers overlay */
 .stickers-toggle {
   position: fixed;

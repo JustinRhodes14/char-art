@@ -9,6 +9,7 @@ import Cart from './pages/Cart';
 import OrderSuccess from './pages/OrderSuccess';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Privacy from './pages/Privacy';
 import './App.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               <Route path="/success" element={<OrderSuccess />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
             </Routes>
           </main>
           <Footer />
