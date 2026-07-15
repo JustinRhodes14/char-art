@@ -1,3 +1,51 @@
+/* Falling stickers overlay */
+.stickers-toggle {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 1050;
+  background: var(--lofi-chocolate);
+  border: 2px solid var(--lofi-honey);
+  color: var(--lofi-cream);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.15s, background 0.15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.stickers-toggle:hover {
+  opacity: 1;
+  background: var(--lofi-xanadu);
+}
+
+.falling-stickers-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.falling-sticker {
+  position: absolute;
+  top: -120px;
+  opacity: 0.72;
+  animation: sticker-fall linear infinite;
+}
+
+@keyframes sticker-fall {
+  from { transform: translateY(0)       rotate(0deg); }
+  to   { transform: translateY(110vh)   rotate(var(--sticker-rotate, 360deg)); }
+}
+
 /* Home Page */
 .home-hero-heading {
   font-family: 'Caveat Brush', cursive;

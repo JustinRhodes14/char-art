@@ -12,12 +12,24 @@ function CharNav() {
   const { cart } = useContext(CartContext);
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-return (
+  return (
     <Navbar expand="lg" className="navbar-cafe" sticky="top">
+      {/* Desktop: logo sits outside Container on the canopy */}
+      <Link to="/" className="navbar-canopy-logo d-none d-lg-flex">
+        <img src={`${process.env.PUBLIC_URL}/park_logo.PNG`} alt="Park LoFi Studio logo" />
+      </Link>
       <Container>
-        <Navbar.Brand as={Link} to="/">Park LoFi Studio</Navbar.Brand>
+        {/* Mobile: logo inline with brand text */}
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2">
+          <img
+            src={`${process.env.PUBLIC_URL}/park_logo.PNG`}
+            alt=""
+            className="d-lg-none navbar-brand-logo-mobile"
+          />
+          Park LoFi Studio
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
-        
+
         <Navbar.Offcanvas
           show={show}
           onHide={handleClose}
@@ -34,7 +46,6 @@ return (
               <Nav.Link as={Link} to="/shop" onClick={handleClose}>Shop</Nav.Link>
               <Nav.Link as={Link} to="/about" onClick={handleClose}>About</Nav.Link>
               <Nav.Link as={Link} to="/contact" onClick={handleClose}>Contact</Nav.Link>
-              {/* Basket Icon with Strawberry Badge */}
               <Nav.Link as={Link} to="/cart" className="ms-3 position-relative" onClick={handleClose}>
                 <BasketIcon weight="duotone" size={32} color="#4A3018" />
                 {cartCount > 0 && (
@@ -48,8 +59,7 @@ return (
         </Navbar.Offcanvas>
       </Container>
     </Navbar>
-);
+  );
 }
-
 
 export default CharNav;

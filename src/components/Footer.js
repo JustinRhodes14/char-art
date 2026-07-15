@@ -12,7 +12,7 @@ function Footer() {
         <Row className="mb-4">
           <Col md={3} className="mb-3">
             <h5>Park LoFi Studio</h5>
-            <p className="footer-lofi-link" style={{ pointerEvents: 'none' }}>Handcrafted artwork with passion and vision.</p>
+            <p className="footer-lofi-link" style={{ pointerEvents: 'none' }}>Coziness right around the corner</p>
           </Col>
           <Col md={3} className="mb-3">
             <h5>Shop</h5>
