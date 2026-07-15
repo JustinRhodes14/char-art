@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.b21dfeb8.css",
-    "main.js": "/static/js/main.8819c44e.js",
-    "static/js/453.d851fa5d.chunk.js": "/static/js/453.d851fa5d.chunk.js",
-    "static/media/artist.jpeg": "/static/media/artist.0df3a3b795a02a67f656.jpeg",
+    "main.css": "/static/css/main.64c531ab.css",
+    "main.js": "/static/js/main.c8ac3d24.js",
+    "static/js/453.9a666ab0.chunk.js": "/static/js/453.9a666ab0.chunk.js",
     "static/media/carousel_art2.jpeg": "/static/media/carousel_art2.f6f67733b1de2e3b0724.jpeg",
     "static/media/carousel_art1.jpeg": "/static/media/carousel_art1.d3108290f1d7e6241e34.jpeg",
     "static/media/carousel_art5.jpeg": "/static/media/carousel_art5.c595f75beac3ba8af4b4.jpeg",
     "static/media/carousel_art4.jpeg": "/static/media/carousel_art4.5deb652976709e931620.jpeg",
+    "static/media/artist.jpeg": "/static/media/artist.0171610cd027cc7c1d02.jpeg",
     "static/media/carousel_art3.jpeg": "/static/media/carousel_art3.326d80d1027198814ebd.jpeg",
     "static/media/shop_art - 6.jpeg": "/static/media/shop_art - 6.94e8ad47e5a0da273921.jpeg",
     "static/media/shop_art - 14.jpeg": "/static/media/shop_art - 14.5d585ae5949fadab5a39.jpeg",
@@ -28,18 +28,21 @@
     "static/media/shop_art - 9.jpeg": "/static/media/shop_art - 9.e0297cbdad182aa3d5c0.jpeg",
     "static/media/shop_art - 16.jpeg": "/static/media/shop_art - 16.faa907b85481b36a678a.jpeg",
     "static/media/Sticker_4.PNG": "/static/media/Sticker_4.4f468fc41c62219e35a6.PNG",
+    "static/media/Sticker_8.PNG": "/static/media/Sticker_8.66a466e253e1743c2a8a.PNG",
     "static/media/Sticker_3.PNG": "/static/media/Sticker_3.e551561a51f6979a2277.PNG",
+    "static/media/Sticker_9.PNG": "/static/media/Sticker_9.6f4e7a125610733f634b.PNG",
     "static/media/Sticker_2.PNG": "/static/media/Sticker_2.716dd028c3ad25957f5f.PNG",
+    "static/media/Sticker_7.PNG": "/static/media/Sticker_7.a212fda9c2cceaf0eca8.PNG",
     "static/media/Sticker_6.PNG": "/static/media/Sticker_6.c6bdb7d4a78c6ec71a33.PNG",
     "static/media/Sticker_1.PNG": "/static/media/Sticker_1.99a5b40df6ca89c2f2c2.PNG",
     "static/media/Sticker_5.PNG": "/static/media/Sticker_5.d7dfbd296f9ba6e0eee1.PNG",
     "index.html": "/index.html",
-    "main.b21dfeb8.css.map": "/static/css/main.b21dfeb8.css.map",
-    "main.8819c44e.js.map": "/static/js/main.8819c44e.js.map",
-    "453.d851fa5d.chunk.js.map": "/static/js/453.d851fa5d.chunk.js.map"
+    "main.64c531ab.css.map": "/static/css/main.64c531ab.css.map",
+    "main.c8ac3d24.js.map": "/static/js/main.c8ac3d24.js.map",
+    "453.9a666ab0.chunk.js.map": "/static/js/453.9a666ab0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b21dfeb8.css",
-    "static/js/main.8819c44e.js"
+    "static/css/main.64c531ab.css",
+    "static/js/main.c8ac3d24.js"
   ]
 }
