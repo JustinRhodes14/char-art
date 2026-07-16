@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { CartContext } from '../features/cart/cartContext';
+import ImageLightbox from './ImageLightbox';
 import '../styles/components.css';
 import '../styles/pages.css';
 
@@ -10,6 +11,7 @@ function ProductCard({ product }) {
   const [added, setAdded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalQty, setModalQty] = useState(1);
+  const [showLightbox, setShowLightbox] = useState(false);
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
@@ -60,7 +62,7 @@ function ProductCard({ product }) {
           <span className="product-modal-category">{product.category}</span>
         </Modal.Header>
         <Modal.Body className="product-modal-body">
-          <div className="product-modal-img-wrap">
+          <div className="product-modal-img-wrap" onClick={() => setShowLightbox(true)} style={{ cursor: 'zoom-in' }}>
             <img src={product.image} alt={product.name} className="product-modal-img" />
             {!product.inStock && <div className="pd-soldout-overlay">Sold Out</div>}
           </div>
@@ -97,6 +99,13 @@ function ProductCard({ product }) {
           </div>
         </Modal.Body>
       </Modal>
+
+      <ImageLightbox
+        src={product.image}
+        alt={product.name}
+        show={showLightbox}
+        onHide={() => setShowLightbox(false)}
+      />
     </>
   );
 }

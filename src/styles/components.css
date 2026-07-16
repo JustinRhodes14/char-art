@@ -353,3 +353,61 @@ body {
   font-weight: 500 !important;
 }
 
+/* Image Lightbox */
+.image-lightbox {
+  z-index: 1100;
+}
+
+.image-lightbox-backdrop {
+  z-index: 1099;
+}
+
+.image-lightbox .modal-dialog {
+  max-width: 90vw;
+}
+
+.image-lightbox .modal-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.image-lightbox-body {
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-lightbox-img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.15s ease;
+}
+
+.image-lightbox-close:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+

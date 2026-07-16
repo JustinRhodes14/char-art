@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { products } from '../data/products';
 import { CartContext } from '../features/cart/cartContext';
+import ImageLightbox from '../components/ImageLightbox';
 import '../styles/pages.css';
 
 function ProductDetail() {
@@ -10,6 +11,7 @@ function ProductDetail() {
   const navigate = useNavigate();
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+  const [showLightbox, setShowLightbox] = useState(false);
 
   const product = products.find(p => p.id === parseInt(id));
 
@@ -30,12 +32,13 @@ function ProductDetail() {
   };
 
   return (
+    <>
     <Container className="product-detail-page py-5">
       <Link to="/shop" className="pd-back-link">← Back to Shop</Link>
 
       <Row className="g-5 mt-0">
         <Col md={6}>
-          <div className="pd-image-wrap">
+          <div className="pd-image-wrap" onClick={() => setShowLightbox(true)} style={{ cursor: 'zoom-in' }}>
             <img src={product.image} alt={product.name} className="pd-image" />
             {!product.inStock && (
               <div className="pd-soldout-overlay">Sold Out</div>
@@ -101,6 +104,14 @@ function ProductDetail() {
         </Col>
       </Row>
     </Container>
+
+    <ImageLightbox
+      src={product.image}
+      alt={product.name}
+      show={showLightbox}
+      onHide={() => setShowLightbox(false)}
+    />
+    </>
   );
 }
 
