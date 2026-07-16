@@ -20,12 +20,12 @@ function Privacy() {
       <h2 className="privacy-section-heading">Information I Collect</h2>
       <p className="privacy-body">I collect information only when you actively provide it:</p>
       <ul className="privacy-list">
-        <li><strong>Purchases</strong> — When you check out, you are redirected to Stripe's secure
+        <li><strong>Purchases</strong>: When you check out, you are redirected to Stripe's secure
         payment page. Stripe collects your name, email address, billing address, and payment card
         details. I never see or store your card number.</li>
-        <li><strong>Shipping</strong> — To fulfill your order, your shipping name and address are
-        passed to Shippo, my shipping provider, to generate a shipping label.</li>
-        <li><strong>Contact form</strong> — If you send me a message, I collect your name, email
+        <li><strong>Shipping</strong>: To fulfill your order, your shipping address is collected
+        by Stripe at checkout and used solely to ship your purchase.</li>
+        <li><strong>Contact form</strong>: If you send me a message, I collect your name, email
         address, and the content of your message.</li>
       </ul>
       <p className="privacy-body">
@@ -54,33 +54,25 @@ function Privacy() {
       </p>
       <ul className="privacy-list">
         <li>
-          <strong>Stripe</strong> — payment processing.{' '}
+          <strong>Stripe</strong>: payment processing.{' '}
           <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="privacy-link">
             stripe.com/privacy
-          </a>
-        </li>
-        <li>
-          <strong>Shippo</strong> — shipping label generation.{' '}
-          <a href="https://goshippo.com/privacy" target="_blank" rel="noopener noreferrer" className="privacy-link">
-            goshippo.com/privacy
           </a>
         </li>
       </ul>
 
       <h2 className="privacy-section-heading">Data Retention</h2>
       <p className="privacy-body">
-        I do not operate my own database of customer records. Your order and payment data is
-        retained by Stripe according to their policies. Shipping records are retained by Shippo
-        according to their policies. Contact form messages are delivered to my email inbox and
-        kept only as long as needed to respond.
+        I do not operate my own database of customer records. Your order, payment, and shipping
+        data is retained by Stripe according to their policies. Contact form messages are
+        delivered to my email inbox and kept only as long as needed to respond.
       </p>
 
       <h2 className="privacy-section-heading">Your Rights</h2>
       <p className="privacy-body">
-        I do not store your personal information in any database. Your order and payment data lives
-        with Stripe, and your shipping address lives with Shippo — to request access, correction,
-        or deletion of that data, you will need to contact those services directly using the links
-        in the Third-Party Services section above. If you have a question about a specific order or
+        I do not store your personal information in any database. Your order, payment, and
+        shipping data lives with Stripe; to request access, correction, or deletion of that
+        data, contact them directly using the link in the Third-Party Services section above. If you have a question about a specific order or
         contact message, feel free to reach out through the{' '}
         <a href="/contact" className="privacy-link">Contact</a> page and I'll do my best to help.
       </p>

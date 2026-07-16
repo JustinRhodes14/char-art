@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../styles/pages.css';
@@ -7,6 +7,11 @@ import carouselArt2 from '../assets/images/carousel_art2.jpeg';
 import carouselArt3 from '../assets/images/carousel_art3.jpeg';
 import carouselArt4 from '../assets/images/carousel_art4.jpeg';
 import carouselArt5 from '../assets/images/carousel_art5.jpeg';
+import carouselArt6 from '../assets/images/carousel_art6.jpeg';
+import carouselArt7 from '../assets/images/carousel_art7.jpeg';
+import carouselArt8 from '../assets/images/carousel_art8.jpeg';
+import carouselArt9 from '../assets/images/carousel_art9.jpeg';
+import carouselArt10 from '../assets/images/carousel_art10.jpeg';
 import sticker1 from '../assets/artwork/Sticker_1.PNG';
 import sticker2 from '../assets/artwork/Sticker_2.PNG';
 import sticker3 from '../assets/artwork/Sticker_3.PNG';
@@ -59,6 +64,29 @@ function Home() {
     { src: carouselArt5, alt: 'Artist Piece 5' },
   ];
 
+  const [index1, setIndex1] = useState(0);
+  const [index2, setIndex2] = useState(0);
+  const [turn, setTurn] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTurn(t => {
+        if (t === 0) setIndex1(i => (i + 1) % 5);
+        else         setIndex2(i => (i + 1) % 5);
+        return 1 - t;
+      });
+    }, 10000); // Change every 10 seconds
+    return () => clearInterval(timer);
+  }, []);
+
+  const carouselImages2 = [
+    { src: carouselArt6,  alt: 'Artist Piece 6'  },
+    { src: carouselArt7,  alt: 'Artist Piece 7'  },
+    { src: carouselArt8,  alt: 'Artist Piece 8'  },
+    { src: carouselArt9,  alt: 'Artist Piece 9'  },
+    { src: carouselArt10, alt: 'Artist Piece 10' },
+  ];
+
   return (
     <>
       <button
@@ -100,10 +128,21 @@ function Home() {
         </Col>
       </Row>
 
-      {/* Carousel Section */}
-      <Row className="my-5">
+      {/* Gallery Section */}
+      <Row className="mt-2 mb-2">
         <Col>
-          <Carousel className="carousel-container">
+          <h2 className="home-gallery-heading">My Work</h2>
+        </Col>
+      </Row>
+      <Row className="mb-3 g-4">
+        <Col md={6}>
+          <Carousel
+            className="carousel-container"
+            activeIndex={index1}
+            onSelect={setIndex1}
+            interval={null}
+            controls={false}
+          >
             {carouselImages.map((image, index) => (
               <Carousel.Item key={index}>
                 <img
@@ -115,6 +154,28 @@ function Home() {
             ))}
           </Carousel>
         </Col>
+
+        {carouselImages2.length > 0 && (
+          <Col md={6}>
+            <Carousel
+              className="carousel-container"
+              activeIndex={index2}
+              onSelect={setIndex2}
+              interval={null}
+              controls={false}
+            >
+              {carouselImages2.map((image, index) => (
+                <Carousel.Item key={index}>
+                  <img
+                    className="d-block w-100 carousel-image"
+                    src={image.src}
+                    alt={image.alt}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Col>
+        )}
       </Row>
 
       {/* Social Media Section */}

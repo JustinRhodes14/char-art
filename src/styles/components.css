@@ -76,14 +76,34 @@ body {
   text-shadow: 2px 2px 0px var(--lofi-mocha) !important;
 }
 
-.navbar-cafe .nav-link {
+.navbar-cafe a {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-cafe .nav-link,
+.navbar-cafe a.nav-link,
+.navbar-cafe a.nav-link:link,
+.navbar-cafe a.nav-link:visited {
   color: var(--lofi-chocolate) !important;
   font-family: "Indie Flower" !important;
   font-size: 3.0rem !important;
   padding-left: 1.25rem !important;
   padding-right: 1.25rem !important;
-  /* cream halo makes chocolate text pop on the green stripes */
+  text-decoration: none !important;
   text-shadow: 1px 1px 0px var(--lofi-mocha) !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease !important;
+}
+
+.navbar-cafe .nav-link:hover,
+.navbar-cafe .nav-link:focus,
+.navbar-cafe a.nav-link:hover,
+.navbar-cafe a.nav-link:focus {
+  color: var(--lofi-strawberry) !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  text-shadow: 0 0 8px var(--lofi-honey), 1px 1px 0px var(--lofi-xanadu) !important;
 }
 
 /* Logo in the navbar, outside the Container so it sits at the left edge */
@@ -116,7 +136,7 @@ body {
   }
 }
 
-/* Offcanvas nav links — mobile drawer */
+/* Offcanvas nav links, mobile drawer */
 .cafe-offcanvas .nav-link {
   font-family: 'Caveat Brush', cursive !important;
   font-size: 2.4rem !important;
@@ -136,7 +156,7 @@ body {
   background: rgba(200, 149, 108, 0.1);
 }
 
-/* Custom Buttons — .btn.btn-lofi-* has specificity 0,2,0 which beats Bootstrap's .btn-primary (0,1,0) */
+/* Custom Buttons, .btn.btn-lofi-* has specificity 0,2,0 which beats Bootstrap's .btn-primary (0,1,0) */
 .btn.btn-lofi-main {
   background-color: var(--lofi-chocolate);
   color: var(--lofi-mocha);

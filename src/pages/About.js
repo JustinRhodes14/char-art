@@ -19,7 +19,7 @@ const MAKES = [
   {
     icon: <Palette size={36} weight="duotone" color="#4A3018" />,
     title: 'Prints',
-    description: 'High-quality art prints to bring a cozy edition to your home or office space.',
+    description: 'High-quality art prints to bring a cozy addition to your home or office space.',
   },
   {
     icon: <Key size={36} weight="duotone" color="#4A3018" />,
@@ -50,7 +50,7 @@ function About() {
       {/* Hero */}
       <section className="about-hero">
         <h1 className="about-hero-heading">Park LoFi Studio</h1>
-        <p className="about-tagline">Cozy art for cozy spaces.</p>
+        <p className="about-tagline">Making the everyday a little more cozy</p>
       </section>
 
       <Container className="py-5">
@@ -64,11 +64,11 @@ function About() {
               className="about-artist-photo img-fluid"
             />
           </Col>
-          <Col md={7}>
+          <Col md={5}>
             <h2 className="about-section-heading">Meet the Artist</h2>
             <p>
               Charlotte Park is a New Jersey-based artist specialized in curating art prints, stationary, and 
-              trinkets that bring a cozy edition to one’s own life. While initially focusing on fashion illustration
+              trinkets that bring a cozy addition to one’s own life. While initially focusing on fashion illustration
               and fine art, it wasn’t until the pandemic that she found her true passion in creating whimsical 
               cozy-hearted illustrations that brought joy to others during a turbulent time. With the grand opening 
               of her shop, she hopes to continue to spread that joy to others in each of her products she makes with 
@@ -133,7 +133,7 @@ function About() {
               rel="noopener noreferrer"
               className="social-link"
             >
-              Instagram
+             <i className="fab fa-instagram"></i> Instagram
             </a>
             <a
               href="https://tiktok.com/@parklofistudio"
@@ -141,7 +141,7 @@ function About() {
               rel="noopener noreferrer"
               className="social-link"
             >
-              TikTok
+              <i className="fab fa-tiktok"></i>  TikTok
             </a>
           </div>
         </section>

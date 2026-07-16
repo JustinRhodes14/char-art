@@ -29,7 +29,7 @@ router.post('/contact', async (req, res) => {
       from: `"Park LoFi Studio" <${process.env.SMTP_USER}>`,
       to: process.env.ARTIST_EMAIL,
       replyTo: email,
-      subject: `New message from ${name} — Park LoFi Studio`,
+      subject: `New message from ${name} - Park LoFi Studio`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>

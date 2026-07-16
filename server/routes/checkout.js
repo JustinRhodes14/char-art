@@ -65,7 +65,7 @@ router.post('/create-checkout-session', async (req, res) => {
       line_items: lineItems,
       mode: 'payment',
 
-      // Stripe collects the shipping address — no need for a separate address form
+      // Stripe collects the shipping address, no need for a separate address form
       shipping_address_collection: {
         allowed_countries: ['US'],
       },
@@ -95,17 +95,7 @@ router.post('/create-checkout-session', async (req, res) => {
         },
       ],
 
-      // Store cart weights in metadata so the webhook can estimate package weight
-      metadata: {
-        items: JSON.stringify(
-          items.map(i => {
-            const product = products.find(p => p.id === i.id);
-            return { id: i.id, quantity: Number(i.quantity), weight_oz: product.weight_oz };
-          })
-        ),
-      },
-
-      success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
 

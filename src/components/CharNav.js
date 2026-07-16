@@ -41,7 +41,7 @@ function CharNav() {
             <Offcanvas.Title>Menu</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="ms-auto align-items-center">
+            <Nav className="ms-auto align-items-center gap-3">
               <Nav.Link as={Link} to="/" onClick={handleClose}>Home</Nav.Link>
               <Nav.Link as={Link} to="/shop" onClick={handleClose}>Shop</Nav.Link>
               <Nav.Link as={Link} to="/about" onClick={handleClose}>About</Nav.Link>

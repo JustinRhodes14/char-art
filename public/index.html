@@ -31,6 +31,19 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      // Restore the URL saved by 404.html (GitHub Pages deep-link / Stripe redirect fix)
+      (function () {
+        var redirect = sessionStorage.getItem('ghpages_redirect');
+        if (redirect) {
+          sessionStorage.removeItem('ghpages_redirect');
+          var url = new URL(redirect);
+          if (url.pathname !== '/') {
+            window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+          }
+        }
+      })();
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

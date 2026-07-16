@@ -1,4 +1,4 @@
-// Local dev entrypoint only — Vercel invokes the app directly via api/index.js
+// Local dev entrypoint only, Vercel invokes the app directly via api/index.js
 require('dotenv').config();
 const app = require('./app');
 

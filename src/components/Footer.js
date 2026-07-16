@@ -12,7 +12,7 @@ function Footer() {
         <Row className="mb-4">
           <Col md={3} className="mb-3">
             <h5>Park LoFi Studio</h5>
-            <p className="footer-lofi-link" style={{ pointerEvents: 'none' }}>Coziness right around the corner</p>
+            <p className="footer-lofi-link" style={{ pointerEvents: 'none' }}>Making the everyday a little more cozy</p>
           </Col>
           <Col md={3} className="mb-3">
             <h5>Shop</h5>
@@ -33,8 +33,8 @@ function Footer() {
               <li><a href="https://instagram.com/parklofistudio"
               target="_blank"
               rel="noopener noreferrer" className="footer-lofi-link"
-              >Instagram</a></li>
-              <li><a href="https://tiktok.com/@parklofistudio" target="_blank" rel="noopener noreferrer" className="footer-lofi-link">TikTok</a></li>
+              ><i className="fab fa-instagram"></i> Instagram</a></li>
+              <li><a href="https://tiktok.com/@parklofistudio" target="_blank" rel="noopener noreferrer" className="footer-lofi-link"><i className="fab fa-tiktok"></i> TikTok</a></li>
             </ul>
           </Col>
         </Row>

@@ -38,7 +38,7 @@ function Cart() {
       <Container className="cart-page py-5">
         <div className="cart-empty">
           <p className="cart-empty-title">Your cart is empty</p>
-          <p className="cart-empty-sub">Nothing here yet — the shop is waiting!</p>
+          <p className="cart-empty-sub">Nothing here yet - the shop is waiting!</p>
           <Link to="/shop" className="btn btn-lofi-main">Browse the Shop</Link>
         </div>
       </Container>

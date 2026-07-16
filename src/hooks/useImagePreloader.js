@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-// Module-level flag — survives React re-mounts so the loading screen
+// Module-level flag - survives React re-mounts so the loading screen
 // only appears once per browser session, not on every navigation.
 let _loaded = false;
 

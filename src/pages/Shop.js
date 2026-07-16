@@ -97,7 +97,7 @@ function Shop() {
             </p>
             {filtered.length === 0 ? (
               <div className="shop-empty">
-                <p>No items match those filters — try widening the price range!</p>
+                <p>No items match those filters, try widening the price range!</p>
               </div>
             ) : (
               <Row className="g-4">

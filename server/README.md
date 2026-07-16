@@ -1,4 +1,4 @@
-# Park LoFi Studio — Backend Server
+# Park LoFi Studio - Backend Server
 
 Express server that handles payment processing (Stripe) and shipping label generation (Shippo) for the Park LoFi Studio storefront.
 
@@ -16,7 +16,7 @@ Express server
   │  stripe.checkout.sessions.create(...)
   ▼
 Stripe Checkout (hosted page)
-  │  — collects card + shipping address
+  │  - collects card + shipping address
   │
   │  on success → redirects browser to /success?session_id=...
   │  simultaneously →
@@ -29,7 +29,7 @@ POST /api/webhook  (Stripe → your server)
   │  → purchase cheapest valid rate
   ▼
 Shippo returns PDF label URL + tracking number
-  (logged to console — wire up email/storage as needed)
+  (logged to console - wire up email/storage as needed)
 ```
 
 ---
@@ -49,18 +49,18 @@ npm install
 cp .env.example .env
 ```
 
-Then fill in each value — see [Environment variables](#environment-variables) below.
+Then fill in each value - see [Environment variables](#environment-variables) below.
 
 ### 3. Run in development
 
 Start the Express server (port 3001) and the React app (port 3000) in separate terminals:
 
 ```bash
-# Terminal 1 — backend
+# Terminal 1 - backend
 cd server
 npm run dev        # uses nodemon, restarts on file changes
 
-# Terminal 2 — frontend
+# Terminal 2 - frontend
 cd ..
 npm start
 ```
@@ -86,14 +86,14 @@ Copy the **webhook signing secret** it prints (`whsec_...`) into your `.env` as 
 | `STRIPE_SECRET_KEY` | [Stripe Dashboard → API keys](https://dashboard.stripe.com/apikeys) | Use `sk_test_...` for dev, `sk_live_...` for prod |
 | `STRIPE_WEBHOOK_SECRET` | Output of `stripe listen` (dev) or Stripe Dashboard → Webhooks (prod) | Verifies webhook payloads are genuinely from Stripe |
 | `SHIPPO_API_KEY` | [Shippo Dashboard → API](https://goshippo.com/user/apikeys) | Use test token for dev (`shippo_test_...`) |
-| `SHOP_NAME` | — | Printed on outgoing shipping labels as the sender name |
-| `SHOP_STREET` | — | Your studio's street address (ship-from) |
-| `SHOP_CITY` | — | Ship-from city |
-| `SHOP_STATE` | — | Ship-from state abbreviation (e.g. `CA`) |
-| `SHOP_ZIP` | — | Ship-from ZIP code |
-| `SHOP_EMAIL` | — | Your contact email, included on Shippo shipments |
-| `CLIENT_URL` | — | React app origin — `http://localhost:3000` in dev, your domain in prod |
-| `PORT` | — | Port for the Express server (default `3001`) |
+| `SHOP_NAME` | - | Printed on outgoing shipping labels as the sender name |
+| `SHOP_STREET` | - | Your studio's street address (ship-from) |
+| `SHOP_CITY` | - | Ship-from city |
+| `SHOP_STATE` | - | Ship-from state abbreviation (e.g. `CA`) |
+| `SHOP_ZIP` | - | Ship-from ZIP code |
+| `SHOP_EMAIL` | - | Your contact email, included on Shippo shipments |
+| `CLIENT_URL` | - | React app origin - `http://localhost:3000` in dev, your domain in prod |
+| `PORT` | - | Port for the Express server (default `3001`) |
 
 ---
 
@@ -130,7 +130,7 @@ The frontend redirects the browser to this URL. Stripe collects the shipping add
 
 ### `POST /api/webhook`
 
-Receives signed events from Stripe. **Do not call this directly** — it is only for Stripe's servers.
+Receives signed events from Stripe. **Do not call this directly** - it is only for Stripe's servers.
 
 Handled events:
 
@@ -159,7 +159,7 @@ Shipping label created: {
 }
 ```
 
-**To extend this** — after the `console.log` in `routes/webhook.js` — you could:
+**To extend this** - after the `console.log` in `routes/webhook.js` - you could:
 - Email the label URL to yourself using Nodemailer or Resend
 - Save the label + tracking to a database alongside the order
 - Trigger a confirmation email to the customer with their tracking number
@@ -170,7 +170,7 @@ Shipping label created: {
 
 ```
 server/
-├── index.js              Entry point — mounts routes, configures middleware
+├── index.js              Entry point - mounts routes, configures middleware
 ├── package.json
 ├── .env.example          Template for required environment variables
 ├── routes/
@@ -187,4 +187,4 @@ server/
 1. Swap test keys for live keys in your production environment (`sk_live_...`, `shippo_live_...`)
 2. Register your production webhook URL in the [Stripe Dashboard](https://dashboard.stripe.com/webhooks) (e.g. `https://yoursite.com/api/webhook`) and copy the new signing secret
 3. Set `CLIENT_URL` to your production frontend domain
-4. Make sure `SHOP_*` address fields are your real ship-from address — Shippo uses this for rate calculation and printed labels
+4. Make sure `SHOP_*` address fields are your real ship-from address - Shippo uses this for rate calculation and printed labels

@@ -98,7 +98,7 @@ body, html {
   overflow-x: hidden; /* Prevents side-scrolling from the wide stripes */
 }
 
-/* Offcanvas width — keep it from covering the full screen */
+/* Offcanvas width - keep it from covering the full screen */
 .cafe-offcanvas {
   width: 75% !important;
 }
