@@ -159,16 +159,17 @@ body {
 /* Custom Buttons, .btn.btn-lofi-* has specificity 0,2,0 which beats Bootstrap's .btn-primary (0,1,0) */
 .btn.btn-lofi-main {
   background-color: var(--lofi-chocolate);
-  color: var(--lofi-mocha);
+  color: var(--lofi-honey);
   border: none;
   border-radius: 12px;
   padding: 10px 25px;
+  font-weight: 700;
   transition: all 0.3s ease;
 }
 
 .btn.btn-lofi-main:hover {
-  background-color: var(--lofi-cream);
-  color: var(--lofi-mocha);
+  background-color: var(--lofi-honey);
+  color: var(--lofi-chocolate);
 }
 
 .btn.btn-lofi-outline {
@@ -181,6 +182,19 @@ body {
 .btn.btn-lofi-outline:hover {
   background-color: var(--lofi-cream);
   color: var(--lofi-mocha);
+}
+
+.btn.btn-lofi-outline-dark {
+  border: 2px solid var(--lofi-chocolate);
+  color: var(--lofi-chocolate);
+  border-radius: 12px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.btn.btn-lofi-outline-dark:hover {
+  background-color: var(--lofi-chocolate);
+  color: var(--lofi-cream);
 }
 
 .btn.btn-lofi-danger {
@@ -243,3 +257,99 @@ body {
   color: rgba(253, 248, 225, 0.65);
   font-size: 1rem;
 }
+
+/* Product Quick-View Modal */
+.product-modal .modal-content {
+  background-color: var(--lofi-cream);
+  background-image: var(--paper-texture);
+  border: 2px solid var(--lofi-honey);
+  border-radius: 14px;
+}
+
+.product-modal-header {
+  border-bottom: 2px solid var(--lofi-honey);
+  padding: 0.6rem 1rem;
+}
+
+.product-modal-category {
+  font-family: 'Indie Flower', cursive;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: var(--lofi-chocolate);
+  color: var(--lofi-cream);
+  padding: 0.1rem 0.65rem;
+  border-radius: 999px;
+  text-transform: capitalize;
+  align-self: flex-start;
+}
+
+.product-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem 1rem;
+}
+
+.product-modal-img-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.product-modal-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--lofi-honey);
+  display: block;
+}
+
+.product-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.product-modal-name {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.6rem;
+  color: var(--lofi-chocolate);
+  margin: 0;
+}
+
+.product-modal-price {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.3rem;
+  color: var(--lofi-mocha);
+  margin: 0;
+}
+
+.product-modal-desc {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.9rem;
+  color: var(--lofi-chocolate);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.product-modal-stepper-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.15rem;
+}
+
+.product-modal-actions {
+  display: flex;
+  gap: 0.6rem;
+  padding-top: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.product-modal-btn {
+  flex: 1;
+  text-align: center;
+  min-width: 100px;
+  font-weight: 500 !important;
+}
+

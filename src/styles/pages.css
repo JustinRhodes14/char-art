@@ -318,6 +318,7 @@
   left: 0.6rem;
   font-family: 'Indie Flower', cursive;
   font-size: 0.78rem;
+  font-weight: 700;
   background-color: var(--lofi-chocolate);
   color: var(--lofi-cream);
   padding: 0.15rem 0.6rem;
@@ -682,7 +683,7 @@
 .cart-stepper-btn {
   width: 28px;
   height: 28px;
-  border: 2px solid var(--lofi-honey);
+  border: 2px solid var(--lofi-mocha);
   border-radius: 6px;
   background: transparent;
   color: var(--lofi-chocolate);
@@ -696,7 +697,8 @@
 }
 
 .cart-stepper-btn:hover {
-  background-color: var(--lofi-honey);
+  background-color: var(--lofi-mocha);
+  color: var(--lofi-cream);
 }
 
 .cart-stepper-val {
