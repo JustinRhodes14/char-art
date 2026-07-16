@@ -1,21 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.99a6e3c3.css",
-    "main.js": "/static/js/main.8c069da9.js",
+    "main.css": "/static/css/main.ad4e2e8b.css",
+    "main.js": "/static/js/main.bcd791c8.js",
     "static/js/453.9a666ab0.chunk.js": "/static/js/453.9a666ab0.chunk.js",
-    "static/media/carousel_art2.jpeg": "/static/media/carousel_art2.f6f67733b1de2e3b0724.jpeg",
-    "static/media/carousel_art1.jpeg": "/static/media/carousel_art1.d3108290f1d7e6241e34.jpeg",
-    "static/media/carousel_art5.jpeg": "/static/media/carousel_art5.c595f75beac3ba8af4b4.jpeg",
-    "static/media/carousel_art4.jpeg": "/static/media/carousel_art4.5deb652976709e931620.jpeg",
     "static/media/artist.jpeg": "/static/media/artist.0171610cd027cc7c1d02.jpeg",
-    "static/media/carousel_art3.jpeg": "/static/media/carousel_art3.326d80d1027198814ebd.jpeg",
     "static/media/shop_art - 6.jpeg": "/static/media/shop_art - 6.94e8ad47e5a0da273921.jpeg",
     "static/media/shop_art - 14.jpeg": "/static/media/shop_art - 14.5d585ae5949fadab5a39.jpeg",
     "static/media/shop_art - 5.jpeg": "/static/media/shop_art - 5.6123a26a4e23469e7876.jpeg",
     "static/media/shop_art - 10.jpeg": "/static/media/shop_art - 10.44194fe1e93033f1e66e.jpeg",
     "static/media/shop_art - 12.jpeg": "/static/media/shop_art - 12.d9a4e718a49dfc7755a4.jpeg",
     "static/media/shop_art - 8.jpeg": "/static/media/shop_art - 8.d6f2857b6aab39cc0b8d.jpeg",
+    "static/media/carousel_art6.jpeg": "/static/media/carousel_art6.1a0ac30856ab9e864cf2.jpeg",
+    "static/media/carousel_art10.jpeg": "/static/media/carousel_art10.7cc01e54211cebe5eadd.jpeg",
     "static/media/shop_art - 18.jpeg": "/static/media/shop_art - 18.43dc997fb5075b0d88f7.jpeg",
+    "static/media/carousel_art7.jpeg": "/static/media/carousel_art7.1f0f69136b0213d2a002.jpeg",
     "static/media/shop_art - 4.jpeg": "/static/media/shop_art - 4.bf201a56e4b55bcb9634.jpeg",
     "static/media/shop_art - 13.jpeg": "/static/media/shop_art - 13.9d4e674be6afe06ae37a.jpeg",
     "static/media/shop_art - 3.jpeg": "/static/media/shop_art - 3.b163305ce9763e4f1273.jpeg",
@@ -27,6 +25,13 @@
     "static/media/shop_art - 11.jpeg": "/static/media/shop_art - 11.b4db87a23debdae98b5e.jpeg",
     "static/media/shop_art - 9.jpeg": "/static/media/shop_art - 9.e0297cbdad182aa3d5c0.jpeg",
     "static/media/shop_art - 16.jpeg": "/static/media/shop_art - 16.faa907b85481b36a678a.jpeg",
+    "static/media/carousel_art2.jpeg": "/static/media/carousel_art2.133062082ebf60fa8bfc.jpeg",
+    "static/media/carousel_art9.jpeg": "/static/media/carousel_art9.67baf54fca2d5d53c44b.jpeg",
+    "static/media/carousel_art1.jpeg": "/static/media/carousel_art1.7372195834455fcdfc4a.jpeg",
+    "static/media/carousel_art5.jpeg": "/static/media/carousel_art5.f09de10cf71562691d24.jpeg",
+    "static/media/carousel_art8.jpeg": "/static/media/carousel_art8.619e13e421195aad5807.jpeg",
+    "static/media/carousel_art4.jpeg": "/static/media/carousel_art4.8018d232d54827ec8da2.jpeg",
+    "static/media/carousel_art3.jpeg": "/static/media/carousel_art3.7b340215c771380a8953.jpeg",
     "static/media/Sticker_4.PNG": "/static/media/Sticker_4.4f468fc41c62219e35a6.PNG",
     "static/media/Sticker_8.PNG": "/static/media/Sticker_8.66a466e253e1743c2a8a.PNG",
     "static/media/Sticker_3.PNG": "/static/media/Sticker_3.e551561a51f6979a2277.PNG",
@@ -37,12 +42,12 @@
     "static/media/Sticker_1.PNG": "/static/media/Sticker_1.99a5b40df6ca89c2f2c2.PNG",
     "static/media/Sticker_5.PNG": "/static/media/Sticker_5.d7dfbd296f9ba6e0eee1.PNG",
     "index.html": "/index.html",
-    "main.99a6e3c3.css.map": "/static/css/main.99a6e3c3.css.map",
-    "main.8c069da9.js.map": "/static/js/main.8c069da9.js.map",
+    "main.ad4e2e8b.css.map": "/static/css/main.ad4e2e8b.css.map",
+    "main.bcd791c8.js.map": "/static/js/main.bcd791c8.js.map",
     "453.9a666ab0.chunk.js.map": "/static/js/453.9a666ab0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.99a6e3c3.css",
-    "static/js/main.8c069da9.js"
+    "static/css/main.ad4e2e8b.css",
+    "static/js/main.bcd791c8.js"
   ]
 }
