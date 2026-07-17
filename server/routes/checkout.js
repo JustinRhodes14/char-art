@@ -85,17 +85,6 @@ router.post('/create-checkout-session', async (req, res) => {
             },
           },
         },
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 799, currency: 'usd' },
-            display_name: 'Priority Shipping',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 2 },
-              maximum: { unit: 'business_day', value: 3 },
-            },
-          },
-        },
       ],
 
 success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,

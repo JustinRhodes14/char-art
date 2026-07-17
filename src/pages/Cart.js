@@ -9,6 +9,22 @@ function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [removingIds, setRemovingIds] = useState([]);
+
+  const FADE_DURATION_MS = 300;
+
+  const handleRemove = (id) => {
+    setRemovingIds(ids => [...ids, id]);
+    setTimeout(() => removeFromCart(id), FADE_DURATION_MS);
+  };
+
+  const handleDecrease = (item) => {
+    if (item.quantity === 1) {
+      handleRemove(item.id);
+    } else {
+      updateQuantity(item.id, item.quantity - 1);
+    }
+  };
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -53,7 +69,10 @@ function Cart() {
         <Col lg={8}>
           <div className="cart-items">
             {cart.map(item => (
-              <div className="cart-item" key={item.id}>
+              <div
+                className={`cart-item ${removingIds.includes(item.id) ? 'cart-item-removing' : ''}`}
+                key={item.id}
+              >
                 {item.image && (
                   <img
                     src={item.image}
@@ -73,7 +92,7 @@ function Cart() {
                 <div className="cart-item-stepper">
                   <button
                     className="cart-stepper-btn"
-                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    onClick={() => handleDecrease(item)}
                     aria-label="Decrease quantity"
                   >−</button>
                   <span className="cart-stepper-val">{item.quantity}</span>
@@ -90,7 +109,7 @@ function Cart() {
 
                 <button
                   className="cart-item-remove"
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => handleRemove(item.id)}
                   aria-label={`Remove ${item.name}`}
                 >×</button>
               </div>
