@@ -29,7 +29,6 @@ export const products = [
     medium: 'Acrylic pin',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 2,
@@ -42,7 +41,6 @@ export const products = [
     medium: 'Art print, pearlescent finish',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 3,
@@ -55,7 +53,6 @@ export const products = [
     medium: 'Acrylic pin',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 4,
@@ -68,7 +65,6 @@ export const products = [
     medium: 'Art print, pearlescent finish',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 5,
@@ -81,7 +77,6 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 6,
@@ -94,7 +89,6 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 7,
@@ -107,7 +101,6 @@ export const products = [
     medium: 'Acrylic pin',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 8,
@@ -120,7 +113,6 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 9,
@@ -133,7 +125,6 @@ export const products = [
     medium: 'Sticker sheet',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 10,
@@ -146,7 +137,6 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 11,
@@ -159,7 +149,6 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 12,
@@ -172,7 +161,6 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 13,
@@ -185,7 +173,6 @@ export const products = [
     medium: 'Pearlescent Acrylic pin',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 14,
@@ -198,7 +185,6 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 15,
@@ -211,7 +197,6 @@ export const products = [
     medium: 'Acrylic pin',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 16,
@@ -224,7 +209,6 @@ export const products = [
     medium: 'Sticker sheet',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 1,
   },
   {
     id: 17,
@@ -237,7 +221,6 @@ export const products = [
     medium: 'Acrylic pin',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
   {
     id: 18,
@@ -250,6 +233,5 @@ export const products = [
     medium: 'Die-cut vinyl sticker',
     inStock: true,
     dateAdded: '2026-07-18',
-    weight_oz: 2,
   },
 ];

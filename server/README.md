@@ -1,6 +1,6 @@
 # Park LoFi Studio - Backend Server
 
-Express server that handles payment processing (Stripe) and shipping label generation (Shippo) for the Park LoFi Studio storefront.
+Express server that handles payment processing (Stripe) for the Park LoFi Studio storefront.
 
 ---
 
@@ -9,10 +9,11 @@ Express server that handles payment processing (Stripe) and shipping label gener
 ```
 Browser (React)
   │
-  │  POST /api/create-checkout-session  { items }
+  │  POST /api/create-checkout-session  { id, quantity }
   ▼
 Express server
   │
+  │  looks up price/name/stock from server/data/products.js
   │  stripe.checkout.sessions.create(...)
   ▼
 Stripe Checkout (hosted page)
@@ -24,13 +25,12 @@ Stripe Checkout (hosted page)
 POST /api/webhook  (Stripe → your server)
   │
   │  checkout.session.completed event
-  │  → reconstruct parcel weight from session metadata
-  │  → shippo.shipment.create(from, to, parcel)
-  │  → purchase cheapest valid rate
+  │  → verifies payment status, logs order details
   ▼
-Shippo returns PDF label URL + tracking number
-  (logged to console - wire up email/storage as needed)
+Order confirmed (logged to console)
 ```
+
+Shipping labels are **not** created automatically. Not every order needs one, so labels are generated manually, per order, using a shipping app installed from the [Stripe App Marketplace](https://apps.stripe.com) directly in the Stripe Dashboard.
 
 ---
 
@@ -85,14 +85,10 @@ Copy the **webhook signing secret** it prints (`whsec_...`) into your `.env` as 
 |---|---|---|
 | `STRIPE_SECRET_KEY` | [Stripe Dashboard → API keys](https://dashboard.stripe.com/apikeys) | Use `sk_test_...` for dev, `sk_live_...` for prod |
 | `STRIPE_WEBHOOK_SECRET` | Output of `stripe listen` (dev) or Stripe Dashboard → Webhooks (prod) | Verifies webhook payloads are genuinely from Stripe |
-| `SHIPPO_API_KEY` | [Shippo Dashboard → API](https://goshippo.com/user/apikeys) | Use test token for dev (`shippo_test_...`) |
-| `SHOP_NAME` | - | Printed on outgoing shipping labels as the sender name |
-| `SHOP_STREET` | - | Your studio's street address (ship-from) |
-| `SHOP_CITY` | - | Ship-from city |
-| `SHOP_STATE` | - | Ship-from state abbreviation (e.g. `CA`) |
-| `SHOP_ZIP` | - | Ship-from ZIP code |
-| `SHOP_EMAIL` | - | Your contact email, included on Shippo shipments |
+| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Your email provider | Sends contact form submissions |
+| `ARTIST_EMAIL` | - | Where contact form submissions are forwarded |
 | `CLIENT_URL` | - | React app origin - `http://localhost:3000` in dev, your domain in prod |
+| `ALLOWED_ORIGINS` | - | Optional comma-separated CORS allowlist, falls back to `CLIENT_URL` |
 | `PORT` | - | Port for the Express server (default `3001`) |
 
 ---
@@ -107,17 +103,12 @@ Creates a Stripe Checkout session from the current cart and returns the hosted c
 ```json
 {
   "items": [
-    {
-      "id": 1,
-      "name": "Sunset Dreams",
-      "price": 250,
-      "quantity": 1,
-      "image": "/assets/artwork/sunset-dreams.jpg",
-      "weight_oz": 8
-    }
+    { "id": 1, "quantity": 1 }
   ]
 }
 ```
+
+Only `id` and `quantity` are read from the client. Price, name, and stock status are always re-derived from `server/data/products.js` server-side, so a tampered request body can't change what gets charged.
 
 **Response:**
 ```json
@@ -136,33 +127,17 @@ Handled events:
 
 | Event | Action |
 |---|---|
-| `checkout.session.completed` | Verifies payment status, then calls Shippo to generate a shipping label |
+| `checkout.session.completed` | Verifies payment status, logs order details (id, customer email, amount) |
 
-The raw request body must reach this handler unparsed (required for Stripe signature verification). This is why it is registered before Express's `json()` middleware in `index.js`.
+The raw request body must reach this handler unparsed (required for Stripe signature verification). This is why it's registered before Express's `json()` middleware in `app.js`.
+
+De-dupes by `session.id` in-memory so Stripe's automatic retries don't trigger duplicate processing - this guard doesn't survive a process restart or work across multiple instances.
 
 ---
 
-## Shipping labels (Shippo)
+## Shipping labels
 
-Labels are created automatically after a confirmed payment. The parcel dimensions are set for a **padded flat envelope** (9" × 6" × 0.5") which covers stickers, keychains, and postcards. The server picks the **cheapest valid rate** across all carriers Shippo returns.
-
-The label URL and tracking number are currently logged to the server console:
-
-```
-Shipping label created: {
-  orderId: 'cs_test_...',
-  carrier: 'USPS',
-  service: 'Ground Advantage',
-  cost: '$4.23',
-  tracking: '9400111899223397234',
-  labelUrl: 'https://shippo-delivery.s3.amazonaws.com/...'
-}
-```
-
-**To extend this** - after the `console.log` in `routes/webhook.js` - you could:
-- Email the label URL to yourself using Nodemailer or Resend
-- Save the label + tracking to a database alongside the order
-- Trigger a confirmation email to the customer with their tracking number
+There's no shipping-carrier API integration in this server, and none is planned. Labels are generated manually, per order, using a shipping app installed from the [Stripe App Marketplace](https://apps.stripe.com) directly in the Stripe Dashboard - configure your ship-from address inside that app, not here.
 
 ---
 
@@ -170,21 +145,25 @@ Shipping label created: {
 
 ```
 server/
-├── index.js              Entry point - mounts routes, configures middleware
+├── app.js                 Builds and exports the Express app (no app.listen())
+├── index.js                Local dev entrypoint - loads .env, calls app.listen()
+├── api/
+│   └── index.js            Vercel serverless entrypoint - exports the app directly
 ├── package.json
-├── .env.example          Template for required environment variables
-├── routes/
-│   ├── checkout.js       POST /api/create-checkout-session
-│   └── webhook.js        POST /api/webhook
-└── services/
-    └── shipping.js       Shippo shipment creation and label purchase
+├── .env.example             Template for required environment variables
+├── data/
+│   └── products.js          Authoritative product catalogue (price, name, stock)
+└── routes/
+    ├── checkout.js          POST /api/create-checkout-session
+    ├── webhook.js           POST /api/webhook
+    └── contact.js           POST /api/contact
 ```
 
 ---
 
 ## Going to production
 
-1. Swap test keys for live keys in your production environment (`sk_live_...`, `shippo_live_...`)
+1. Swap test keys for live keys in your production environment (`sk_live_...`)
 2. Register your production webhook URL in the [Stripe Dashboard](https://dashboard.stripe.com/webhooks) (e.g. `https://yoursite.com/api/webhook`) and copy the new signing secret
 3. Set `CLIENT_URL` to your production frontend domain
-4. Make sure `SHOP_*` address fields are your real ship-from address - Shippo uses this for rate calculation and printed labels
+4. Install a shipping-label app from the [Stripe App Marketplace](https://apps.stripe.com) and configure your ship-from address there

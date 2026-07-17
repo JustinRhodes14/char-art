@@ -27,7 +27,7 @@ router.post('/create-checkout-session', async (req, res) => {
       return res.status(400).json({ error: 'Cart is empty' });
     }
 
-    // Only `id` and `quantity` come from the client. Price, name, weight, and
+    // Only `id` and `quantity` come from the client. Price, name, and
     // stock status are always re-derived from the server's own catalog so a
     // tampered request body can't change what gets charged.
     const lineItems = [];
