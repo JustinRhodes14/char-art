@@ -55,6 +55,7 @@ router.post('/create-checkout-session', async (req, res) => {
             }),
           },
           unit_amount: Math.round(product.price * 100),
+          tax_behavior: 'exclusive',
         },
         quantity,
       });
@@ -64,6 +65,8 @@ router.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
+
+      automatic_tax: { enabled: true },
 
       // Stripe collects the shipping address, no need for a separate address form
       shipping_address_collection: {
