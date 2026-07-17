@@ -66,7 +66,7 @@ function About() {
           </Col>
           <Col md={5}>
             <h2 className="about-section-heading">Meet the Artist</h2>
-            <p>
+            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: '1.15rem' }}>
               Charlotte Park is a New Jersey-based artist specialized in curating art prints, stationary, and 
               trinkets that bring a cozy addition to one’s own life. While initially focusing on fashion illustration
               and fine art, it wasn’t until the pandemic that she found her true passion in creating whimsical 
@@ -74,7 +74,7 @@ function About() {
               of her shop, she hopes to continue to spread that joy to others in each of her products she makes with 
               love and care. It is thanks to your patronage and support that she is able to make it come true. 
             </p>
-            <p>
+            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: '1.15rem' }}>
               Thank you again for your visit, and we hope to see you soon :)
             </p>
             <Link to="/shop">
@@ -123,7 +123,7 @@ function About() {
         {/* Connect */}
         <section className="text-center pb-3">
           <h2 className="about-section-heading mb-2">Come Say Hi</h2>
-          <p className="mb-4" style={{ fontFamily: "'Indie Flower', cursive", fontSize: '1.15rem' }}>
+          <p className="mb-4" style={{ fontFamily: "'Quicksand', sans-serif", fontSize: '1.15rem' }}>
             I post work-in-progress, new releases, and studio life over on Instagram and TikTok.
           </p>
           <div className="social-links justify-content-center">

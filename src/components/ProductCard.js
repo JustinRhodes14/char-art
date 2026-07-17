@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
+import { RulerIcon } from '@phosphor-icons/react/ssr';
 import { CartContext } from '../features/cart/cartContext';
 import ImageLightbox from './ImageLightbox';
 import '../styles/components.css';
@@ -37,6 +38,12 @@ function ProductCard({ product }) {
         <div className="product-card-img-wrap">
           <img src={product.image} alt={product.name} className="product-card-img" />
           <span className="product-card-category">{product.category}</span>
+          {product.dimensions && (
+            <span className="product-card-dimensions">
+              <RulerIcon size={13} weight="duotone" style={{ marginRight: '0.25rem', verticalAlign: 'middle' }} />
+              {product.dimensions}
+            </span>
+          )}
           {!product.inStock && <div className="product-card-soldout">Sold Out</div>}
         </div>
         <div className="product-card-body">
@@ -44,7 +51,7 @@ function ProductCard({ product }) {
           <p className="product-card-desc">{product.description}</p>
           <div className="product-card-footer">
             <div className="product-card-footer-row">
-              <span className="product-card-price">${product.price}</span>
+              <span className="product-card-price">${product.price.toFixed(2)}</span>
             </div>
             <button
               className="btn btn-lofi-main product-card-add-btn"
@@ -68,7 +75,7 @@ function ProductCard({ product }) {
           </div>
           <div className="product-modal-info">
             <h3 className="product-modal-name">{product.name}</h3>
-            <p className="product-modal-price">${product.price}</p>
+            <p className="product-modal-price">${product.price.toFixed(2)}</p>
             <p className="product-modal-desc">{product.description}</p>
             {product.inStock && (
               <div className="product-modal-stepper-wrap">

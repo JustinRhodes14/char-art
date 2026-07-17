@@ -163,8 +163,8 @@ body {
   border: none;
   border-radius: 12px;
   padding: 10px 25px;
-  font-weight: 700;
   transition: all 0.3s ease;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .btn.btn-lofi-main:hover {
@@ -238,7 +238,7 @@ body {
 .footer-lofi-link {
   color: rgba(253, 248, 225, 0.8);
   text-decoration: none;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.1rem;
   transition: color 0.2s ease;
 }
@@ -253,7 +253,7 @@ body {
 }
 
 .footer-lofi .footer-copy {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   color: rgba(253, 248, 225, 0.65);
   font-size: 1rem;
 }
@@ -350,7 +350,6 @@ body {
   flex: 1;
   text-align: center;
   min-width: 100px;
-  font-weight: 500 !important;
 }
 
 /* Image Lightbox */

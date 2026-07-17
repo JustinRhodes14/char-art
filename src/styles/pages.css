@@ -123,6 +123,8 @@
   font-size: 1.25rem;
   color: var(--lofi-chocolate);
   margin-bottom: 2rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
 }
 
 /* Gallery & Shop Pages */
@@ -228,14 +230,14 @@
 }
 
 .shop-filter-label {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
   color: var(--lofi-chocolate);
 }
 
 .shop-filter-select {
   width: 100%;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 0.95rem;
   padding: 0.4rem 0.6rem;
   border: 2px solid var(--lofi-honey);
@@ -255,7 +257,7 @@
 .shop-filter-range-labels {
   display: flex;
   justify-content: space-between;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 0.85rem;
   color: var(--lofi-mocha);
   margin-top: 0.25rem;
@@ -363,6 +365,21 @@
   line-height: 1.5;
   flex: 1;
   margin-bottom: 1rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.product-card-dimensions {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--lofi-chocolate);
+  color: var(--lofi-cream);
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  pointer-events: none;
 }
 
 .product-card-footer {
@@ -394,7 +411,6 @@
   width: 100%;
   padding: 0.35rem 0 !important;
   font-size: 0.9rem !important;
-  font-family: 'Indie Flower', cursive !important;
   transition: all 0.2s ease !important;
 }
 
@@ -608,7 +624,7 @@
 }
 
 .cart-empty-sub {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.1rem;
   color: var(--lofi-mocha);
   margin-bottom: 1.5rem;
@@ -899,6 +915,7 @@
   font-size: 0.95rem;
   color: var(--lofi-chocolate);
   margin: 0;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .about-card--value {
@@ -942,7 +959,7 @@
 }
 
 .contact-label {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.05rem;
   color: var(--lofi-chocolate);
   margin-bottom: 0.3rem;
@@ -951,7 +968,7 @@
 .contact-notice {
   padding: 0.9rem 1.2rem;
   border-radius: 10px;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.05rem;
 }
 
@@ -970,7 +987,7 @@
 .contact-info-heading {
   font-family: 'Caveat Brush', cursive;
   color: var(--lofi-chocolate);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-bottom: 0.3rem;
 }
 
@@ -1037,7 +1054,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.2rem;
   text-decoration: none;
   color: var(--lofi-chocolate);

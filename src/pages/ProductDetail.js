@@ -50,7 +50,7 @@ function ProductDetail() {
           <div className="pd-info">
             <span className="pd-category-tag">{product.category}</span>
             <h1 className="pd-name">{product.name}</h1>
-            <p className="pd-price">${product.price}</p>
+            <p className="pd-price">${product.price.toFixed(2)}</p>
             <p className="pd-description">{product.description}</p>
 
             <div className="pd-meta">

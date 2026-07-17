@@ -49,7 +49,7 @@ function Contact() {
         <Col md={7}>
 
           <h1 className="about-section-heading mb-1">Get in Touch</h1>
-          <p className="contact-subheading mb-4">
+          <p className="contact-subheading mb-4" style={{ fontFamily: "'Quicksand', sans-serif", fontSize: '1.15rem' }}>
             Have a question about an order, a custom request, or just want to say hi? Send me a message.
           </p>
 
@@ -118,15 +118,21 @@ function Contact() {
           <Row className="mt-4">
             <Col sm={6} className="mb-3">
               <h5 className="contact-info-heading">Email</h5>
-              <a href="mailto:cpark1692@gmail.com" className="contact-info-link">
+              <a href="mailto:cpark1692@gmail.com" className="contact-info-link" style={{ fontFamily: "'Quicksand', sans-serif"}}>
                 cpark1692@gmail.com
               </a>
             </Col>
-            <Col sm={6} className="mb-3">
+            <Col md={6} className="mb-3">
               <h5 className="contact-info-heading">Follow Along</h5>
               <div className="d-flex gap-3">
-                <a href="https://instagram.com/parklofistudio" target="_blank" rel="noopener noreferrer" className="contact-info-link">Instagram</a>
-                <a href="https://tiktok.com/@parklofistudio" target="_blank" rel="noopener noreferrer" className="contact-info-link">TikTok</a>
+                <a href="https://instagram.com/parklofistudio" target="_blank" rel="noopener noreferrer" className="contact-info-link" style={{ fontFamily: "'Quicksand', sans-serif"}}>
+                  <i className="fab fa-instagram"></i> Instagram
+                </a>
+              </div>
+              <div>
+                <a href="https://tiktok.com/@parklofistudio" target="_blank" rel="noopener noreferrer" className="contact-info-link" style={{ fontFamily: "'Quicksand', sans-serif"}}>
+                  <i className="fab fa-tiktok"></i> TikTok
+                </a>
               </div>
             </Col>
           </Row>
