@@ -141,7 +141,7 @@ export const products = [
   {
     id: 11,
     name: '"Aligned" Bread Slices',
-    category: 'art print',
+    category: 'sticker',
     description: 'Close enough to the saying, at least they\'re doing their best.',
     price: 5,
     image: art11,

@@ -1,23 +1,108 @@
 const express = require('express');
 const router = express.Router();
-const https = require('https');
-const tls = require('tls');
-const fs = require('fs');
-const path = require('path');
+const stripe = require('../stripeClient');
 const { products } = require('../data/products');
 
-// On macOS, Node's CA list is missing the legacy root that api.stripe.com's
-// chain cross-signs through. Pass a custom agent with the extended CA list.
-// The cert file may not be present on Linux/Vercel (where it isn't needed).
-const certPath = path.join(__dirname, '../certs/aaa-certificate-services-root.pem');
-const ca = fs.existsSync(certPath)
-  ? [...tls.rootCertificates, fs.readFileSync(certPath, 'utf8')]
-  : tls.rootCertificates;
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
-  httpAgent: new https.Agent({ ca }),
-});
-
 const MAX_QUANTITY_PER_ITEM = 20;
+
+// Number of 'package'-class items (pins, prints, sticker sheets - anything
+// that can't go in a padded envelope) at which an order outgrows a Priority
+// Mail Padded Flat Rate Envelope and needs a Priority Mail Flat Rate Box
+// instead. Adjust based on real packing experience.
+const BOX_ITEM_THRESHOLD = 3;
+
+// USPS retail rates, Notice 123 effective 2026-07-12, origin ZIP 07204 (NJ).
+// Every rate below is flat regardless of destination zone/province, which
+// matters because Stripe's hosted Checkout page can't dynamically
+// recalculate shipping_options once the customer enters their address
+// (that requires the embedded/Elements integration, a much bigger change -
+// see https://docs.stripe.com/payments/checkout/custom-shipping-options).
+// Domestic Ground Advantage would be cheaper for nearby zones but is
+// genuinely zone-dependent ($7.90-$9.45 for a light package from NJ), so any
+// single flat number for it is a guess that overcharges some customers and
+// undercharges others - the flat-rate products avoid that entirely.
+const SHIPPING_TIERS = {
+  US: {
+    envelope: {
+      // First-Class Mail Letter (stamped), 1 oz.
+      amount: 82,
+      display_name: 'US Shipping',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 3 },
+        maximum: { unit: 'business_day', value: 5 },
+      },
+    },
+    package: {
+      // Priority Mail Padded Flat Rate Envelope.
+      amount: 1400,
+      display_name: 'US Shipping',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 1 },
+        maximum: { unit: 'business_day', value: 3 },
+      },
+    },
+    box: {
+      // Priority Mail Medium Flat Rate Box.
+      amount: 2480,
+      display_name: 'US Shipping',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 1 },
+        maximum: { unit: 'business_day', value: 3 },
+      },
+    },
+  },
+  CA: {
+    envelope: {
+      // First-Class Mail International Letter, 1 oz, to Canada.
+      amount: 175,
+      display_name: 'Canada Shipping',
+      // USPS doesn't guarantee a delivery window for this service; this is
+      // a rough real-world estimate, not an SLA.
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 7 },
+        maximum: { unit: 'business_day', value: 21 },
+      },
+    },
+    package: {
+      // Priority Mail International Flat Rate Envelope, to Canada.
+      amount: 3265,
+      display_name: 'Canada Shipping',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 6 },
+        maximum: { unit: 'business_day', value: 10 },
+      },
+    },
+    box: {
+      // Priority Mail International Medium Flat Rate Box, to Canada.
+      amount: 6180,
+      display_name: 'Canada Shipping',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 6 },
+        maximum: { unit: 'business_day', value: 10 },
+      },
+    },
+  },
+};
+
+function getShippingTier(cartProducts) {
+  const packageItemCount = cartProducts
+    .filter(({ product }) => product.shippingClass === 'package')
+    .reduce((sum, { quantity }) => sum + quantity, 0);
+
+  if (packageItemCount === 0) return 'envelope';
+  if (packageItemCount >= BOX_ITEM_THRESHOLD) return 'box';
+  return 'package';
+}
+
+// Vercel sets this from the request's IP address - no API call or dependency
+// needed. It's a browsing-location guess, not the actual ship-to address
+// (e.g. a US customer can still ship a gift to Canada), so it only decides
+// which labeled option is listed/preselected first - both are always shown
+// and either is always selectable.
+function getGeoCountryHint(req) {
+  const country = req.headers['x-vercel-ip-country'];
+  return country === 'CA' ? 'CA' : 'US';
+}
 
 router.post('/create-checkout-session', async (req, res) => {
   try {
@@ -31,6 +116,7 @@ router.post('/create-checkout-session', async (req, res) => {
     // stock status are always re-derived from the server's own catalog so a
     // tampered request body can't change what gets charged.
     const lineItems = [];
+    const cartProducts = [];
     for (const requested of items) {
       const product = products.find(p => p.id === requested.id);
       const quantity = Number(requested.quantity);
@@ -59,7 +145,28 @@ router.post('/create-checkout-session', async (req, res) => {
         },
         quantity,
       });
+      cartProducts.push({ product, quantity });
     }
+
+    const tier = getShippingTier(cartProducts);
+    const geoHint = getGeoCountryHint(req);
+    // Both countries' options are always included and selectable - geoHint
+    // only decides which one is listed first (Stripe preselects the first
+    // shipping_options entry). See getGeoCountryHint for why we don't use
+    // it to restrict which countries/rates are offered.
+    const countryOrder = geoHint === 'CA' ? ['CA', 'US'] : ['US', 'CA'];
+    const shippingOptions = countryOrder.map(country => {
+      const rate = SHIPPING_TIERS[country][tier];
+      return {
+        shipping_rate_data: {
+          type: 'fixed_amount',
+          fixed_amount: { amount: rate.amount, currency: 'usd' },
+          display_name: rate.display_name,
+          delivery_estimate: rate.delivery_estimate,
+          metadata: { country },
+        },
+      };
+    });
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -70,22 +177,10 @@ router.post('/create-checkout-session', async (req, res) => {
 
       // Stripe collects the shipping address, no need for a separate address form
       shipping_address_collection: {
-        allowed_countries: ['US'],
+        allowed_countries: ['US', 'CA'],
       },
 
-      shipping_options: [
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 399, currency: 'usd' },
-            display_name: 'Standard Shipping',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 5 },
-              maximum: { unit: 'business_day', value: 7 },
-            },
-          },
-        },
-      ],
+      shipping_options: shippingOptions,
 
 success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/cart`,
