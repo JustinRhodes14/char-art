@@ -219,7 +219,7 @@ export const products = [
     description: 'All your adorable egg friends in one sheet, and a few friends who are exclusive to this breakfast club.',
     price: 7.50,
     image: art16,
-    dimensions: '4" x 6"',
+    dimensions: '7" x 5"',
     medium: 'Sticker sheet',
     materialType: 'sticker-sheet',
     inStock: true,
