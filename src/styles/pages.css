@@ -779,6 +779,41 @@
   border-bottom: 2px solid var(--lofi-honey);
 }
 
+.free-shipping-banner {
+  margin-bottom: 1.25rem;
+}
+
+.free-shipping-message {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.5rem;
+}
+
+.free-shipping-message-earned {
+  color: var(--lofi-xanadu);
+  font-weight: 600;
+}
+
+.free-shipping-progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(75, 38, 9, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.free-shipping-progress-fill {
+  height: 100%;
+  background-color: var(--lofi-honey);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.free-shipping-progress-fill-complete {
+  background-color: var(--lofi-xanadu);
+}
+
 .cart-summary-row {
   display: flex;
   justify-content: space-between;

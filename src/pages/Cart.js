@@ -5,6 +5,9 @@ import { CartContext } from '../features/cart/cartContext';
 import { API_BASE_URL } from '../api';
 import '../styles/pages.css';
 
+// Keep in sync with FREE_SHIPPING_THRESHOLD_CENTS in server/routes/checkout.js
+const FREE_SHIPPING_THRESHOLD = 40;
+
 function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
   const [loading, setLoading] = useState(false);
@@ -28,6 +31,10 @@ function Cart() {
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const qualifiesForFreeShipping = total >= FREE_SHIPPING_THRESHOLD;
+  const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - total);
+  const freeShippingProgress = Math.min(100, (total / FREE_SHIPPING_THRESHOLD) * 100);
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -120,6 +127,27 @@ function Cart() {
         <Col lg={4}>
           <div className="cart-summary">
             <h3 className="cart-summary-heading">Order Summary</h3>
+
+            <div className="free-shipping-banner">
+              <p className={`free-shipping-message ${qualifiesForFreeShipping ? 'free-shipping-message-earned' : ''}`}>
+                {qualifiesForFreeShipping
+                  ? "You've unlocked free shipping!"
+                  : `Add $${amountToFreeShipping.toFixed(2)} more for free shipping`}
+              </p>
+              <div
+                className="free-shipping-progress-track"
+                role="progressbar"
+                aria-valuenow={Math.round(freeShippingProgress)}
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-label="Progress toward free shipping"
+              >
+                <div
+                  className={`free-shipping-progress-fill ${qualifiesForFreeShipping ? 'free-shipping-progress-fill-complete' : ''}`}
+                  style={{ width: `${freeShippingProgress}%` }}
+                />
+              </div>
+            </div>
 
             <div className="cart-summary-row">
               <span>Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'items'})</span>

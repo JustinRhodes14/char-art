@@ -5,6 +5,10 @@ const { products } = require('../data/products');
 
 const MAX_QUANTITY_PER_ITEM = 20;
 
+// Orders with a merchandise subtotal (before tax/shipping) at or above this
+// amount ship free, regardless of shipping tier or country.
+const FREE_SHIPPING_THRESHOLD_CENTS = 4000;
+
 // Artist-requested pause on Canada shipping. All the CA rate data, geo-hint
 // ordering, and the webhook's rate/country mismatch check are left in place
 // on purpose - flip this back to true to re-enable, no other changes needed.
@@ -165,13 +169,18 @@ router.post('/create-checkout-session', async (req, res) => {
     const countryOrder = geoHint === 'CA'
       ? availableCountries.slice().reverse()
       : availableCountries;
+
+    const subtotalCents = cartProducts
+      .reduce((sum, { product, quantity }) => sum + Math.round(product.price * 100) * quantity, 0);
+    const freeShipping = subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS;
+
     const shippingOptions = countryOrder.map(country => {
       const rate = SHIPPING_TIERS[country][tier];
       return {
         shipping_rate_data: {
           type: 'fixed_amount',
-          fixed_amount: { amount: rate.amount, currency: 'usd' },
-          display_name: rate.display_name,
+          fixed_amount: { amount: freeShipping ? 0 : rate.amount, currency: 'usd' },
+          display_name: freeShipping ? `Free ${rate.display_name}` : rate.display_name,
           delivery_estimate: rate.delivery_estimate,
           metadata: { country },
         },
