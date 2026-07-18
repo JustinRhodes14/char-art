@@ -170,7 +170,7 @@ export const products = [
     price: 7.99,
     image: art13,
     dimensions: '2"',
-    medium: 'Pearlescent Acrylic pin',
+    medium: 'Pearlescent acrylic pin',
     inStock: true,
     dateAdded: '2026-07-18',
   },
