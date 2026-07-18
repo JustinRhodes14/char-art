@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { SHIPPING_BLURB } from '../data/shippingBlurb';
 import '../styles/pages.css';
 
 const LAST_UPDATED = 'July 18, 2026';
@@ -37,9 +38,7 @@ function Shipping() {
       <h2 className="privacy-section-heading">Processing &amp; Shipping Time</h2>
       <p className="privacy-body">
         Once the order is received, processing, packaging, and labeling your order will require
-        between 1-4 business days. Once shipped, delivery typically takes 1-3 business days for
-        orders sent via Priority Mail, or 3-5 business days for lightweight orders sent via
-        First-Class Mail.
+        between 1-4 business days. {SHIPPING_BLURB}
       </p>
       <p className="privacy-body">
         Once the tracking number is activated, you can track your order status through USPS.
@@ -59,12 +58,11 @@ function Shipping() {
 
       <h2 className="privacy-section-heading">Do all orders get a tracking number?</h2>
       <p className="privacy-body">
-        Except orders weighing under 3.5 ounces (packaging included), all orders are given a
-        shipping label with a unique tracking number. The customer will receive a tracking number
-        when the shipping label is created. For orders under 3.5 ounces, they are treated as
-        Standard First-Class Mail letter envelopes (USPS) and will not receive a tracking number;
-        however, you will be notified when your order has been dropped off at the postal office
-        via the email you provide at checkout.
+        Orders that include anything beyond stickers (pins, prints, or sticker sheets) ship in a
+        padded envelope or box with a printed shipping label, which includes a tracking number,
+        we'll pass that along to you once the label has been created. Orders of stickers only
+        ship in a standard stamped envelope; USPS doesn't provide tracking for First-Class Mail
+        letters, so those orders won't have a tracking number.
       </p>
 
       <h2 className="privacy-section-heading">Changes to Shipping Policy</h2>

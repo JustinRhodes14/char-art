@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { RulerIcon } from '@phosphor-icons/react/ssr';
 import { CartContext } from '../features/cart/cartContext';
+import { MATERIAL_DESCRIPTIONS } from '../data/products';
 import ImageLightbox from './ImageLightbox';
+import ProductPolicyNotes from './ProductPolicyNotes';
 import '../styles/components.css';
 import '../styles/pages.css';
 
@@ -64,7 +66,7 @@ function ProductCard({ product }) {
         </div>
       </div>
 
-      <Modal show={showModal} onHide={handleModalClose} centered className="product-modal">
+      <Modal show={showModal} onHide={handleModalClose} centered scrollable className="product-modal">
         <Modal.Header closeButton className="product-modal-header">
           <span className="product-modal-category">{product.category}</span>
         </Modal.Header>
@@ -103,6 +105,13 @@ function ProductCard({ product }) {
                 {added ? 'Added!' : '+ Add to Cart'}
               </button>
             </div>
+
+            {product.materialType && MATERIAL_DESCRIPTIONS[product.materialType] && (
+              <p className="product-material-desc">
+                {MATERIAL_DESCRIPTIONS[product.materialType]}
+              </p>
+            )}
+            <ProductPolicyNotes />
           </div>
         </Modal.Body>
       </Modal>

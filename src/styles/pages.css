@@ -512,6 +512,32 @@
   margin-bottom: 1.25rem;
 }
 
+.product-material-desc {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  color: var(--lofi-mocha);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.product-policy-notes {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.78rem;
+  color: var(--lofi-mocha);
+  line-height: 1.5;
+  border-top: 1px solid var(--lofi-honey);
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+}
+
+.product-policy-notes p {
+  margin-bottom: 0.4rem;
+}
+
+.product-policy-notes p:last-child {
+  margin-bottom: 0;
+}
+
 /* Metadata table */
 .pd-meta {
   border-top: 2px solid var(--lofi-honey);

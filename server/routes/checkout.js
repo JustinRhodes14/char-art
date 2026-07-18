@@ -14,13 +14,15 @@ const FREE_SHIPPING_THRESHOLD_CENTS = 4000;
 // on purpose - flip this back to true to re-enable, no other changes needed.
 const SHIP_TO_CANADA = false;
 
-// Total shippingWeight (see products.js) an order can reach while still
-// fitting a Priority Mail Padded Flat Rate Envelope - e.g. up to ~10 prints,
-// or ~3 pins, or a mix, all fit; beyond this it needs a Priority Mail Flat
-// Rate Box instead. Deliberately generous: a slightly-oversized order eating
-// a bit of margin on the box tier is fine. Adjust based on real packing
-// experience.
-const BOX_CAPACITY = 10;
+// Independent per-shape capacity for a Priority Mail Padded Flat Rate
+// Envelope - prints/sticker sheets lie flat, pins nestle in the gaps around
+// them, so up to PIN_CAPACITY pins AND up to FLAT_CAPACITY prints/sticker
+// sheets fit *simultaneously* (measured against real bubble mailers - they
+// don't compete for one shared budget). Only needs a Priority Mail Flat Rate
+// Box ($24.80 vs $14.00) if either count is exceeded on its own. Adjust
+// based on real packing experience.
+const PIN_CAPACITY = 7;
+const FLAT_CAPACITY = 10;
 
 // USPS retail rates, Notice 123 effective 2026-07-12, origin ZIP 07204 (NJ).
 // Every rate below is flat regardless of destination zone/province, which
@@ -99,10 +101,14 @@ function getShippingTier(cartProducts) {
   const hasPackageItem = cartProducts.some(({ product }) => product.shippingClass === 'package');
   if (!hasPackageItem) return 'envelope';
 
-  const totalWeight = cartProducts
-    .reduce((sum, { product, quantity }) => sum + (product.shippingWeight || 0) * quantity, 0);
+  const countByType = (types) => cartProducts
+    .filter(({ product }) => types.includes(product.materialType))
+    .reduce((sum, { quantity }) => sum + quantity, 0);
 
-  return totalWeight > BOX_CAPACITY ? 'box' : 'package';
+  const pinCount = countByType(['pin', 'pin-holographic']);
+  const flatCount = countByType(['print', 'sticker-sheet']);
+
+  return (pinCount > PIN_CAPACITY || flatCount > FLAT_CAPACITY) ? 'box' : 'package';
 }
 
 // Vercel sets this from the request's IP address - no API call or dependency

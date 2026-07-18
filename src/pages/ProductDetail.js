@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { products } from '../data/products';
+import { products, MATERIAL_DESCRIPTIONS } from '../data/products';
 import { CartContext } from '../features/cart/cartContext';
 import ImageLightbox from '../components/ImageLightbox';
+import ProductPolicyNotes from '../components/ProductPolicyNotes';
 import '../styles/pages.css';
 
 function ProductDetail() {
@@ -53,6 +54,12 @@ function ProductDetail() {
             <p className="pd-price">${product.price.toFixed(2)}</p>
             <p className="pd-description">{product.description}</p>
 
+            {product.materialType && MATERIAL_DESCRIPTIONS[product.materialType] && (
+              <p className="product-material-desc">
+                {MATERIAL_DESCRIPTIONS[product.materialType]}
+              </p>
+            )}
+
             <div className="pd-meta">
               {product.dimensions && (
                 <div className="pd-meta-row">
@@ -98,6 +105,8 @@ function ProductDetail() {
                 </button>
               </>
             )}
+
+            <ProductPolicyNotes />
 
             <Link to="/shop" className="pd-continue-link">← keep shopping</Link>
           </div>
