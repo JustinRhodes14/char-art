@@ -128,6 +128,14 @@ function Returns() {
         has been delayed or lost, you will need to contact your local post office.
       </p>
 
+      <h2 className="privacy-section-heading">Our Discretion</h2>
+      <p className="privacy-body">
+        We want every request to be handled fairly, and we'll always do our best to work with you.
+        That said, we reserve the right to decline a refund or replacement if a request falls
+        outside the terms of this policy, or if we have reason to believe it's being made in bad
+        faith.
+      </p>
+
       <h2 className="privacy-section-heading">Changes to Our Return/Refund Policy</h2>
       <p className="privacy-body">
         We reserve the right to modify our return/refund policy at any time without prior notice,

@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from '../components/ProductCard';
 import { products } from '../data/products';
 import useImagePreloader from '../hooks/useImagePreloader';
+import { FREE_SHIPPING_THRESHOLD } from '../data/freeShippingThreshold';
 import '../styles/pages.css';
 
 const CATEGORIES = ['all', 'pin', 'print', 'rectangular sticker', 'sticker sheet', 'vinyl sticker'];
@@ -42,6 +43,10 @@ function Shop() {
       <div className="shop-hero">
         <h1 className="shop-hero-heading">The Little Shop</h1>
         <p className="shop-tagline">Handmade goods for cozy people ˚₊‧꩜</p>
+      </div>
+
+      <div className="shop-shipping-banner">
+        Spend ${FREE_SHIPPING_THRESHOLD}, ship free - no code needed!
       </div>
 
       <Container className="shop-page py-5">

@@ -183,6 +183,16 @@
   margin: 0;
 }
 
+.shop-shipping-banner {
+  background-color: var(--lofi-xanadu);
+  color: var(--lofi-cream);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 0.6rem 1rem;
+}
+
 /* ─── Category Pills ─── */
 .shop-category-row {
   display: flex;

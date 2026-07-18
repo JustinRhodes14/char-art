@@ -3,10 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../features/cart/cartContext';
 import { API_BASE_URL } from '../api';
+import { FREE_SHIPPING_THRESHOLD } from '../data/freeShippingThreshold';
 import '../styles/pages.css';
-
-// Keep in sync with FREE_SHIPPING_THRESHOLD_CENTS in server/routes/checkout.js
-const FREE_SHIPPING_THRESHOLD = 40;
 
 function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
