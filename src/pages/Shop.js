@@ -5,7 +5,7 @@ import { products } from '../data/products';
 import useImagePreloader from '../hooks/useImagePreloader';
 import '../styles/pages.css';
 
-const CATEGORIES = ['all', 'acrylic pin', 'art print', 'sticker', 'sticker sheet'];
+const CATEGORIES = ['all', 'pin', 'print', 'rectangular sticker', 'sticker sheet', 'vinyl sticker'];
 const MAX_PRICE = 20;
 
 function Shop() {
