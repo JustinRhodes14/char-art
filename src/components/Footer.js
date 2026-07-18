@@ -43,7 +43,11 @@ function Footer() {
           <Col className="text-center">
             <p className="footer-copy mb-0">
               © {currentYear} Park LoFi Studio. All rights reserved. &nbsp;·&nbsp;{' '}
-              <Link to="/privacy" className="footer-lofi-link">Privacy Policy</Link>
+              <Link to="/privacy" className="footer-lofi-link">Privacy Policy</Link>{' '}
+              &nbsp;·&nbsp;{' '}
+              <Link to="/shipping" className="footer-lofi-link">Shipping Policy</Link>{' '}
+              &nbsp;·&nbsp;{' '}
+              <Link to="/returns" className="footer-lofi-link">Return Policy</Link>
             </p>
           </Col>
         </Row>

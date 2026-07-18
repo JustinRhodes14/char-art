@@ -11,6 +11,8 @@ import OrderSuccess from './pages/OrderSuccess';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
+import Shipping from './pages/Shipping';
+import Returns from './pages/Returns';
 import './App.css';
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/shipping" element={<Shipping />} />
+              <Route path="/returns" element={<Returns />} />
             </Routes>
           </main>
           <Footer />

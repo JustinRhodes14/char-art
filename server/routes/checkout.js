@@ -5,11 +5,18 @@ const { products } = require('../data/products');
 
 const MAX_QUANTITY_PER_ITEM = 20;
 
-// Number of 'package'-class items (pins, prints, sticker sheets - anything
-// that can't go in a padded envelope) at which an order outgrows a Priority
-// Mail Padded Flat Rate Envelope and needs a Priority Mail Flat Rate Box
-// instead. Adjust based on real packing experience.
-const BOX_ITEM_THRESHOLD = 3;
+// Artist-requested pause on Canada shipping. All the CA rate data, geo-hint
+// ordering, and the webhook's rate/country mismatch check are left in place
+// on purpose - flip this back to true to re-enable, no other changes needed.
+const SHIP_TO_CANADA = false;
+
+// Total shippingWeight (see products.js) an order can reach while still
+// fitting a Priority Mail Padded Flat Rate Envelope - e.g. up to ~10 prints,
+// or ~3 pins, or a mix, all fit; beyond this it needs a Priority Mail Flat
+// Rate Box instead. Deliberately generous: a slightly-oversized order eating
+// a bit of margin on the box tier is fine. Adjust based on real packing
+// experience.
+const BOX_CAPACITY = 10;
 
 // USPS retail rates, Notice 123 effective 2026-07-12, origin ZIP 07204 (NJ).
 // Every rate below is flat regardless of destination zone/province, which
@@ -85,13 +92,13 @@ const SHIPPING_TIERS = {
 };
 
 function getShippingTier(cartProducts) {
-  const packageItemCount = cartProducts
-    .filter(({ product }) => product.shippingClass === 'package')
-    .reduce((sum, { quantity }) => sum + quantity, 0);
+  const hasPackageItem = cartProducts.some(({ product }) => product.shippingClass === 'package');
+  if (!hasPackageItem) return 'envelope';
 
-  if (packageItemCount === 0) return 'envelope';
-  if (packageItemCount >= BOX_ITEM_THRESHOLD) return 'box';
-  return 'package';
+  const totalWeight = cartProducts
+    .reduce((sum, { product, quantity }) => sum + (product.shippingWeight || 0) * quantity, 0);
+
+  return totalWeight > BOX_CAPACITY ? 'box' : 'package';
 }
 
 // Vercel sets this from the request's IP address - no API call or dependency
@@ -150,11 +157,14 @@ router.post('/create-checkout-session', async (req, res) => {
 
     const tier = getShippingTier(cartProducts);
     const geoHint = getGeoCountryHint(req);
-    // Both countries' options are always included and selectable - geoHint
-    // only decides which one is listed first (Stripe preselects the first
-    // shipping_options entry). See getGeoCountryHint for why we don't use
-    // it to restrict which countries/rates are offered.
-    const countryOrder = geoHint === 'CA' ? ['CA', 'US'] : ['US', 'CA'];
+    // Both countries' options are included and selectable whenever Canada
+    // shipping is on - geoHint only decides which is listed first (Stripe
+    // preselects the first shipping_options entry). See getGeoCountryHint
+    // for why we don't use it to restrict which countries/rates are offered.
+    const availableCountries = SHIP_TO_CANADA ? ['US', 'CA'] : ['US'];
+    const countryOrder = geoHint === 'CA'
+      ? availableCountries.slice().reverse()
+      : availableCountries;
     const shippingOptions = countryOrder.map(country => {
       const rate = SHIPPING_TIERS[country][tier];
       return {
@@ -177,7 +187,7 @@ router.post('/create-checkout-session', async (req, res) => {
 
       // Stripe collects the shipping address, no need for a separate address form
       shipping_address_collection: {
-        allowed_countries: ['US', 'CA'],
+        allowed_countries: availableCountries,
       },
 
       shipping_options: shippingOptions,
