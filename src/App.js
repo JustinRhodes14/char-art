@@ -3,6 +3,7 @@ import { CartProvider } from './features/cart/cartContext';
 import CharNav from './components/CharNav';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import MobileCartButton from './components/MobileCartButton';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetail from './pages/ProductDetail';
@@ -37,6 +38,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <MobileCartButton />
         </div>
       </Router>
     </CartProvider>
