@@ -121,6 +121,15 @@ function getGeoCountryHint(req) {
   return country === 'CA' ? 'CA' : 'US';
 }
 
+// stripeProductId values in server/data/products.js point at persistent
+// Products that only exist in the *live* Stripe account (created 2026-07-20
+// so Parcelcraft can read shipping weight - see products.js for why). Test
+// mode has no equivalent objects, so referencing them there would 400 with
+// "No such product" and break local/CI testing entirely. Detect the mode
+// from the key in use and fall back to the original inline product_data
+// (an ephemeral, per-session Product) whenever we're not running live.
+const IS_LIVE_MODE = (process.env.STRIPE_SECRET_KEY || '').startsWith('sk_live_');
+
 router.post('/create-checkout-session', async (req, res) => {
   try {
     const { items } = req.body;
@@ -151,12 +160,20 @@ router.post('/create-checkout-session', async (req, res) => {
       lineItems.push({
         price_data: {
           currency: 'usd',
-          product_data: {
-            name: product.name,
-            ...(product.image && {
-              images: [`${process.env.CLIENT_URL}${product.image}`],
-            }),
-          },
+          // Live mode: reference the persistent Stripe Product so Parcelcraft
+          // can read its shipping weight. Test mode: fall back to the old
+          // inline product_data, since the persistent Products don't exist
+          // there - see IS_LIVE_MODE above.
+          ...(IS_LIVE_MODE && product.stripeProductId
+            ? { product: product.stripeProductId }
+            : {
+                product_data: {
+                  name: product.name,
+                  ...(product.image && {
+                    images: [`${process.env.CLIENT_URL}${product.image}`],
+                  }),
+                },
+              }),
           unit_amount: Math.round(product.price * 100),
           tax_behavior: 'exclusive',
         },
