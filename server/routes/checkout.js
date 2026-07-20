@@ -14,86 +14,125 @@ const FREE_SHIPPING_THRESHOLD_CENTS = 4000;
 // on purpose - flip this back to true to re-enable, no other changes needed.
 const SHIP_TO_CANADA = false;
 
-// Independent per-shape capacity for a Priority Mail Padded Flat Rate
-// Envelope - prints/sticker sheets lie flat, pins nestle in the gaps around
-// them, so up to PIN_CAPACITY pins AND up to FLAT_CAPACITY prints/sticker
-// sheets fit *simultaneously* (measured against real bubble mailers - they
-// don't compete for one shared budget). Only needs a Priority Mail Flat Rate
-// Box ($24.80 vs $14.00) if either count is exceeded on its own. Adjust
-// based on real packing experience.
+// Independent per-shape capacity for a bubble mailer shipped via USPS Ground
+// Advantage (see SHIPPING_TIERS below) - prints/sticker sheets lie flat,
+// pins nestle in the gaps around them, so up to PIN_CAPACITY pins AND up to
+// FLAT_CAPACITY prints/sticker sheets fit *simultaneously* (measured against
+// real bubble mailers - they don't compete for one shared budget). Only
+// needs a Priority Mail Flat Rate Box ($24.80) if either count is exceeded
+// on its own. Adjust based on real packing experience.
 const PIN_CAPACITY = 7;
 const FLAT_CAPACITY = 10;
 
-// USPS retail rates, Notice 123 effective 2026-07-12, origin ZIP 07204 (NJ).
 // Every rate below is flat regardless of destination zone/province, which
 // matters because Stripe's hosted Checkout page can't dynamically
-// recalculate shipping_options once the customer enters their address
-// (that requires the embedded/Elements integration, a much bigger change -
-// see https://docs.stripe.com/payments/checkout/custom-shipping-options).
-// Domestic Ground Advantage would be cheaper for nearby zones but is
-// genuinely zone-dependent ($7.90-$9.45 for a light package from NJ), so any
-// single flat number for it is a guess that overcharges some customers and
-// undercharges others - the flat-rate products avoid that entirely.
+// recalculate shipping_options once the customer enters their address (that
+// requires the embedded/Elements integration, a much bigger change - see
+// https://docs.stripe.com/payments/checkout/custom-shipping-options).
+//
+// The "package" tier's two US rates come from real Parcelcraft commercial
+// quotes (2026-07-20), NOT flat-rate packaging - flat-rate boxes/envelopes
+// are a Priority/Express-only product meant for heavy items and badly
+// overcharge anything this light (a Priority quote dropped from $11.02 to
+// $8.01 just from switching off flat-rate packaging on the same package).
+// Ground Advantage, quoted with the actual bubble-mailer dimensions, came
+// back $6.24 at 7-8oz and $6.95 at 9oz shipping NJ -> California (our
+// farthest practical zone and our realistic max package weight per the
+// PIN_CAPACITY/FLAT_CAPACITY caps above) - $7.00 leaves a small buffer.
+// Priority is kept as a paid, non-free-eligible upgrade for customers who
+// want it faster; see freeEligible below.
 const SHIPPING_TIERS = {
   US: {
-    envelope: {
-      // First-Class Mail Letter (stamped), 1 oz.
-      amount: 82,
-      display_name: 'US Shipping',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 3 },
-        maximum: { unit: 'business_day', value: 5 },
+    envelope: [
+      {
+        // First-Class Mail Letter (stamped), 1 oz.
+        amount: 82,
+        display_name: 'US Shipping',
+        delivery_estimate: {
+          minimum: { unit: 'business_day', value: 3 },
+          maximum: { unit: 'business_day', value: 5 },
+        },
+        freeEligible: true,
       },
-    },
-    package: {
-      // Priority Mail Padded Flat Rate Envelope.
-      amount: 1400,
-      display_name: 'US Shipping',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 1 },
-        maximum: { unit: 'business_day', value: 3 },
+    ],
+    package: [
+      {
+        // USPS Ground Advantage, real bubble-mailer dimensions. Default/
+        // cheap option - see the rate-source comment above.
+        amount: 700,
+        display_name: 'US Standard Shipping',
+        delivery_estimate: {
+          minimum: { unit: 'business_day', value: 2 },
+          maximum: { unit: 'business_day', value: 5 },
+        },
+        freeEligible: true,
       },
-    },
-    box: {
-      // Priority Mail Medium Flat Rate Box.
-      amount: 2480,
-      display_name: 'US Shipping',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 1 },
-        maximum: { unit: 'business_day', value: 3 },
+      {
+        // Priority Mail Padded Flat Rate Envelope, offered as a paid
+        // faster-shipping upgrade. Deliberately not freeEligible - "free
+        // shipping" means free standard (Ground Advantage), not a free
+        // upgrade to a faster paid service.
+        amount: 1400,
+        display_name: 'US Priority Shipping (1-3 Days)',
+        delivery_estimate: {
+          minimum: { unit: 'business_day', value: 1 },
+          maximum: { unit: 'business_day', value: 3 },
+        },
+        freeEligible: false,
       },
-    },
+    ],
+    box: [
+      {
+        // Priority Mail Medium Flat Rate Box.
+        amount: 2480,
+        display_name: 'US Shipping',
+        delivery_estimate: {
+          minimum: { unit: 'business_day', value: 1 },
+          maximum: { unit: 'business_day', value: 3 },
+        },
+        freeEligible: true,
+      },
+    ],
   },
   CA: {
-    envelope: {
-      // First-Class Mail International Letter, 1 oz, to Canada.
-      amount: 175,
-      display_name: 'Canada Shipping',
-      // USPS doesn't guarantee a delivery window for this service; this is
-      // a rough real-world estimate, not an SLA.
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 7 },
-        maximum: { unit: 'business_day', value: 21 },
+    envelope: [
+      {
+        // First-Class Mail International Letter, 1 oz, to Canada.
+        amount: 175,
+        display_name: 'Canada Shipping',
+        // USPS doesn't guarantee a delivery window for this service; this is
+        // a rough real-world estimate, not an SLA.
+        delivery_estimate: {
+          minimum: { unit: 'business_day', value: 7 },
+          maximum: { unit: 'business_day', value: 21 },
+        },
+        freeEligible: true,
       },
-    },
-    package: {
-      // Priority Mail International Flat Rate Envelope, to Canada.
-      amount: 3265,
-      display_name: 'Canada Shipping',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 6 },
-        maximum: { unit: 'business_day', value: 10 },
+    ],
+    package: [
+      {
+        // Priority Mail International Flat Rate Envelope, to Canada.
+        amount: 3265,
+        display_name: 'Canada Shipping',
+        delivery_estimate: {
+          minimum: { unit: 'business_day', value: 6 },
+          maximum: { unit: 'business_day', value: 10 },
+        },
+        freeEligible: true,
       },
-    },
-    box: {
-      // Priority Mail International Medium Flat Rate Box, to Canada.
-      amount: 6180,
-      display_name: 'Canada Shipping',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 6 },
-        maximum: { unit: 'business_day', value: 10 },
+    ],
+    box: [
+      {
+        // Priority Mail International Medium Flat Rate Box, to Canada.
+        amount: 6180,
+        display_name: 'Canada Shipping',
+        delivery_estimate: {
+          minimum: { unit: 'business_day', value: 6 },
+          maximum: { unit: 'business_day', value: 10 },
+        },
+        freeEligible: true,
       },
-    },
+    ],
   },
 };
 
@@ -197,17 +236,26 @@ router.post('/create-checkout-session', async (req, res) => {
       .reduce((sum, { product, quantity }) => sum + Math.round(product.price * 100) * quantity, 0);
     const freeShipping = subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS;
 
-    const shippingOptions = countryOrder.map(country => {
-      const rate = SHIPPING_TIERS[country][tier];
-      return {
-        shipping_rate_data: {
-          type: 'fixed_amount',
-          fixed_amount: { amount: freeShipping ? 0 : rate.amount, currency: 'usd' },
-          display_name: freeShipping ? `Free ${rate.display_name}` : rate.display_name,
-          delivery_estimate: rate.delivery_estimate,
-          metadata: { country },
-        },
-      };
+    // Each tier can offer more than one rate (e.g. "package" offers a cheap
+    // Ground Advantage default plus a paid Priority upgrade) - flatMap so
+    // every rate for every listed country becomes its own selectable
+    // shipping_options entry, in the order defined in SHIPPING_TIERS (so the
+    // cheap default stays first/preselected). freeShipping only zeroes out
+    // rates marked freeEligible - a paid upgrade like Priority stays paid.
+    const shippingOptions = countryOrder.flatMap(country => {
+      const rates = SHIPPING_TIERS[country][tier];
+      return rates.map(rate => {
+        const isFree = freeShipping && rate.freeEligible;
+        return {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: isFree ? 0 : rate.amount, currency: 'usd' },
+            display_name: isFree ? `Free ${rate.display_name}` : rate.display_name,
+            delivery_estimate: rate.delivery_estimate,
+            metadata: { country },
+          },
+        };
+      });
     });
 
     const session = await stripe.checkout.sessions.create({

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { SHIPPING_BLURB } from '../data/shippingBlurb';
 import '../styles/pages.css';
 
-const LAST_UPDATED = 'July 18, 2026';
+const LAST_UPDATED = 'July 20, 2026';
 
 function Shipping() {
   return (
@@ -29,10 +29,9 @@ function Shipping() {
 
       <h2 className="privacy-section-heading">Shipping Costs/Types</h2>
       <p className="privacy-body">
-        As we are a fairly new business, we are unable to offer shipping options other than
-        standard shipping at the moment, so please keep this in mind at checkout. As we continue
-        to grow, we hope to provide you with more shipping options with your order in the near
-        future!
+        Sticker-only orders ship via standard USPS First-Class Mail. Orders containing pins,
+        prints, or sticker sheets ship via USPS Ground Advantage by default, with a faster
+        Priority Mail option available for an extra fee at checkout.
       </p>
 
       <h2 className="privacy-section-heading">Processing &amp; Shipping Time</h2>
