@@ -18,7 +18,8 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "playwright-core": "^1.62.0"
   },
   "scripts": {
     "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
@@ -26,7 +27,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "REACT_APP_API_URL=https://char-art.vercel.app DISABLE_ESLINT_PLUGIN=true react-scripts build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "og:image": "node scripts/og-card/render.mjs"
   },
   "eslintConfig": {
     "extends": [

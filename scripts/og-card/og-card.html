@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Quicksand:wght@500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --lofi-xanadu: #738678;
+    --lofi-chocolate: #4B2609;
+    --lofi-strawberry: #CE5A62;
+    --lofi-honey: #FFD290;
+    --lofi-cream: #FFE0B2;
+    --lofi-crema: #fda60f;
+    --lofi-mocha: #A4692E;
+  }
+
+  html, body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background-color: var(--lofi-crema);
+    background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .stripe-top, .stripe-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: repeating-linear-gradient(
+      to right,
+      var(--lofi-honey), var(--lofi-honey) 90px,
+      var(--lofi-cream) 90px, var(--lofi-cream) 180px
+    );
+  }
+  .stripe-top { top: 0; box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+  .stripe-bottom { bottom: 0; box-shadow: 0 -6px 14px rgba(0,0,0,0.08); }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+    border: 3px solid var(--lofi-honey);
+    box-shadow: 0 6px 18px rgba(75, 38, 9, 0.2);
+    margin-bottom: 28px;
+    object-fit: cover;
+  }
+
+  h1 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 84px;
+    font-weight: 400;
+    color: var(--lofi-chocolate);
+    text-shadow: 3px 3px 0px var(--lofi-mocha);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--lofi-chocolate);
+    max-width: 640px;
+    line-height: 1.4;
+    margin-bottom: 26px;
+  }
+
+  .tags {
+    display: flex;
+    gap: 14px;
+  }
+
+  .tag {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--lofi-chocolate);
+    border: 2px solid var(--lofi-honey);
+    background: var(--lofi-cream);
+    padding: 8px 20px;
+    border-radius: 999px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="stripe-top"></div>
+    <div class="content">
+      <img class="logo" src="../../public/park_logo.PNG" alt="" />
+      <h1>Park LoFi Studio</h1>
+      <h2>Making the everyday a little more cozy</h2>
+      <div class="tags">
+        <span class="tag">Art Prints</span>
+        <span class="tag">Pins</span>
+        <span class="tag">Stickers</span>
+      </div>
+    </div>
+    <div class="stripe-bottom"></div>
+  </div>
+</body>
+</html>
