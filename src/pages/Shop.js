@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from '../components/ProductCard';
-import { products } from '../data/products';
+import { products, isNewProduct } from '../data/products';
 import useImagePreloader from '../hooks/useImagePreloader';
 import { FREE_SHIPPING_THRESHOLD } from '../data/freeShippingThreshold';
 import '../styles/pages.css';
 
-const CATEGORIES = ['all', 'pin', 'print', 'rectangular sticker', 'sticker sheet', 'vinyl sticker'];
+const CATEGORIES = ['all', 'pin', 'print', 'rectangular sticker', 'sticker sheet', 'vinyl sticker', 'keychain', 'memo pad'
+];
 const MAX_PRICE = 20;
 
 function Shop() {
@@ -14,6 +15,7 @@ function Shop() {
   const [sortBy, setSortBy] = useState('featured');
   const [maxPrice, setMaxPrice] = useState(MAX_PRICE);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [newOnly, setNewOnly] = useState(false);
 
   if (!allLoaded) {
     return (
@@ -29,6 +31,9 @@ function Shop() {
     filtered = filtered.filter(p => p.category === activeCategory);
   }
   filtered = filtered.filter(p => p.price <= maxPrice);
+  if (newOnly) {
+    filtered = filtered.filter(isNewProduct);
+  }
 
   if (sortBy === 'price-low') {
     filtered.sort((a, b) => a.price - b.price);
@@ -66,6 +71,15 @@ function Shop() {
           <Col lg={3} className="mb-4">
             <div className="shop-filters">
               <p className="shop-filters-heading">Filters</p>
+
+              <label className="shop-filter-checkbox mb-4">
+                <input
+                  type="checkbox"
+                  checked={newOnly}
+                  onChange={e => setNewOnly(e.target.checked)}
+                />
+                New Arrivals Only
+              </label>
 
               <label className="shop-filter-label d-block mb-1">Sort By</label>
               <select

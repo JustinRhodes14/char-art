@@ -246,6 +246,23 @@
   color: var(--lofi-chocolate);
 }
 
+.shop-filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  color: var(--lofi-chocolate);
+  cursor: pointer;
+}
+
+.shop-filter-checkbox input[type='checkbox'] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--lofi-strawberry);
+  cursor: pointer;
+}
+
 .shop-filter-select {
   width: 100%;
   font-family: 'Quicksand', sans-serif;
@@ -320,7 +337,7 @@
   width: 100%;
   height: 220px;
   object-fit: cover;
-  object-position: center;
+  object-position: center 42%;
   display: block;
   border-bottom: 2px solid var(--lofi-honey);
 }
@@ -338,6 +355,21 @@
   border-radius: 999px;
   text-transform: capitalize;
   letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.product-card-new-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1rem;
+  background-color: var(--lofi-strawberry);
+  color: var(--lofi-cream);
+  padding: 0.1rem 0.7rem 0.15rem;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  transform: rotate(4deg);
   pointer-events: none;
 }
 

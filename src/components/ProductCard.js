@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { RulerIcon } from '@phosphor-icons/react/ssr';
 import { CartContext } from '../features/cart/cartContext';
-import { MATERIAL_DESCRIPTIONS } from '../data/products';
+import { MATERIAL_DESCRIPTIONS, isNewProduct } from '../data/products';
 import ImageLightbox from './ImageLightbox';
 import ProductPolicyNotes from './ProductPolicyNotes';
 import '../styles/components.css';
@@ -38,8 +38,14 @@ function ProductCard({ product }) {
     <>
       <div className="product-card h-100" onClick={() => setShowModal(true)} style={{ cursor: 'pointer' }}>
         <div className="product-card-img-wrap">
-          <img src={product.image} alt={product.name} className="product-card-img" />
+          <img
+            src={product.image}
+            alt={product.name}
+            className="product-card-img"
+            style={product.cardImagePosition ? { objectPosition: product.cardImagePosition } : undefined}
+          />
           <span className="product-card-category">{product.category}</span>
+          {isNewProduct(product) && <span className="product-card-new-badge">New</span>}
           {product.dimensions && (
             <span className="product-card-dimensions">
               <RulerIcon size={13} weight="duotone" style={{ marginRight: '0.25rem', verticalAlign: 'middle' }} />
