@@ -25,7 +25,7 @@ function Shop() {
     );
   }
 
-  let filtered = [...products];
+  let filtered = products.filter(p => !p.hiddenFromShop);
 
   if (activeCategory !== 'all') {
     filtered = filtered.filter(p => p.category === activeCategory);

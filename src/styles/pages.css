@@ -635,6 +635,10 @@
   color: var(--lofi-chocolate);
 }
 
+.shop-category-pill.pd-variant-pill {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .pd-add-btn {
   width: 100%;
   padding: 0.6rem 0 !important;

@@ -15,6 +15,9 @@ function ProductDetail() {
   const [showLightbox, setShowLightbox] = useState(false);
 
   const product = products.find(p => p.id === parseInt(id));
+  const variants = product && product.variantGroup
+    ? products.filter(p => p.variantGroup === product.variantGroup)
+    : [];
 
   if (!product) {
     return (
@@ -40,7 +43,7 @@ function ProductDetail() {
       <Row className="g-5 mt-0">
         <Col md={6}>
           <div className="pd-image-wrap" onClick={() => setShowLightbox(true)} style={{ cursor: 'zoom-in' }}>
-            <img src={product.image} alt={product.name} className="pd-image" />
+            <img src={product.image} alt={product.shopDisplayName || product.name} className="pd-image" />
             {!product.inStock && (
               <div className="pd-soldout-overlay">Sold Out</div>
             )}
@@ -50,9 +53,27 @@ function ProductDetail() {
         <Col md={6}>
           <div className="pd-info">
             <span className="pd-category-tag">{product.category}</span>
-            <h1 className="pd-name">{product.name}</h1>
+            <h1 className="pd-name">{product.shopDisplayName || product.name}</h1>
             <p className="pd-price">${product.price.toFixed(2)}</p>
             <p className="pd-description">{product.description}</p>
+
+            {variants.length > 1 && (
+              <div className="mb-3">
+                <span className="pd-stepper-label d-block mb-2">Design</span>
+                <div className="d-flex gap-2 flex-wrap">
+                  {variants.map(v => (
+                    <button
+                      key={v.id}
+                      type="button"
+                      className={`shop-category-pill pd-variant-pill${product.id === v.id ? ' active' : ''}`}
+                      onClick={() => navigate(`/product/${v.id}`, { replace: true })}
+                    >
+                      {v.variantLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {product.materialType && MATERIAL_DESCRIPTIONS[product.materialType] && (
               <p className="product-material-desc">
@@ -116,7 +137,7 @@ function ProductDetail() {
 
     <ImageLightbox
       src={product.image}
-      alt={product.name}
+      alt={product.shopDisplayName || product.name}
       show={showLightbox}
       onHide={() => setShowLightbox(false)}
     />

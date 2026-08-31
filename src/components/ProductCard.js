@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { RulerIcon } from '@phosphor-icons/react/ssr';
 import { CartContext } from '../features/cart/cartContext';
-import { MATERIAL_DESCRIPTIONS, isNewProduct } from '../data/products';
+import { products, MATERIAL_DESCRIPTIONS, isNewProduct } from '../data/products';
 import ImageLightbox from './ImageLightbox';
 import ProductPolicyNotes from './ProductPolicyNotes';
 import '../styles/components.css';
@@ -15,6 +15,11 @@ function ProductCard({ product }) {
   const [showModal, setShowModal] = useState(false);
   const [modalQty, setModalQty] = useState(1);
   const [showLightbox, setShowLightbox] = useState(false);
+  const [activeProduct, setActiveProduct] = useState(product);
+
+  const variants = product.variantGroup
+    ? products.filter(p => p.variantGroup === product.variantGroup)
+    : [];
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
@@ -24,7 +29,7 @@ function ProductCard({ product }) {
   };
 
   const handleModalAddToCart = () => {
-    addToCart({ ...product, quantity: modalQty });
+    addToCart({ ...activeProduct, quantity: modalQty });
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };
@@ -32,6 +37,7 @@ function ProductCard({ product }) {
   const handleModalClose = () => {
     setShowModal(false);
     setModalQty(1);
+    setActiveProduct(product);
   };
 
   return (
@@ -40,7 +46,7 @@ function ProductCard({ product }) {
         <div className="product-card-img-wrap">
           <img
             src={product.image}
-            alt={product.name}
+            alt={product.shopDisplayName || product.name}
             className="product-card-img"
             style={product.cardImagePosition ? { objectPosition: product.cardImagePosition } : undefined}
           />
@@ -55,7 +61,7 @@ function ProductCard({ product }) {
           {!product.inStock && <div className="product-card-soldout">Sold Out</div>}
         </div>
         <div className="product-card-body">
-          <h3 className="product-card-title">{product.name}</h3>
+          <h3 className="product-card-title">{product.shopDisplayName || product.name}</h3>
           <p className="product-card-desc">{product.description}</p>
           <div className="product-card-footer">
             <div className="product-card-footer-row">
@@ -74,18 +80,37 @@ function ProductCard({ product }) {
 
       <Modal show={showModal} onHide={handleModalClose} centered scrollable className="product-modal">
         <Modal.Header closeButton className="product-modal-header">
-          <span className="product-modal-category">{product.category}</span>
+          <span className="product-modal-category">{activeProduct.category}</span>
         </Modal.Header>
         <Modal.Body className="product-modal-body">
           <div className="product-modal-img-wrap" onClick={() => setShowLightbox(true)} style={{ cursor: 'zoom-in' }}>
-            <img src={product.image} alt={product.name} className="product-modal-img" />
-            {!product.inStock && <div className="pd-soldout-overlay">Sold Out</div>}
+            <img src={activeProduct.image} alt={activeProduct.shopDisplayName || activeProduct.name} className="product-modal-img" />
+            {!activeProduct.inStock && <div className="pd-soldout-overlay">Sold Out</div>}
           </div>
           <div className="product-modal-info">
-            <h3 className="product-modal-name">{product.name}</h3>
-            <p className="product-modal-price">${product.price.toFixed(2)}</p>
-            <p className="product-modal-desc">{product.description}</p>
-            {product.inStock && (
+            <h3 className="product-modal-name">{activeProduct.shopDisplayName || activeProduct.name}</h3>
+            <p className="product-modal-price">${activeProduct.price.toFixed(2)}</p>
+            <p className="product-modal-desc">{activeProduct.description}</p>
+
+            {variants.length > 1 && (
+              <div className="mb-3">
+                <span className="pd-stepper-label d-block mb-2">Design</span>
+                <div className="d-flex gap-2 flex-wrap">
+                  {variants.map(v => (
+                    <button
+                      key={v.id}
+                      type="button"
+                      className={`shop-category-pill pd-variant-pill${activeProduct.id === v.id ? ' active' : ''}`}
+                      onClick={() => setActiveProduct(v)}
+                    >
+                      {v.variantLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {activeProduct.inStock && (
               <div className="product-modal-stepper-wrap">
                 <span className="pd-stepper-label">Quantity</span>
                 <div className="cart-item-stepper">
@@ -97,7 +122,7 @@ function ProductCard({ product }) {
             )}
             <div className="product-modal-actions">
               <Link
-                to={`/product/${product.id}`}
+                to={`/product/${activeProduct.id}`}
                 className="btn btn-lofi-outline-dark product-modal-btn"
                 onClick={() => setShowModal(false)}
               >
@@ -106,15 +131,15 @@ function ProductCard({ product }) {
               <button
                 className="btn btn-lofi-main product-modal-btn"
                 onClick={handleModalAddToCart}
-                disabled={!product.inStock || added}
+                disabled={!activeProduct.inStock || added}
               >
                 {added ? 'Added!' : '+ Add to Cart'}
               </button>
             </div>
 
-            {product.materialType && MATERIAL_DESCRIPTIONS[product.materialType] && (
+            {activeProduct.materialType && MATERIAL_DESCRIPTIONS[activeProduct.materialType] && (
               <p className="product-material-desc">
-                {MATERIAL_DESCRIPTIONS[product.materialType]}
+                {MATERIAL_DESCRIPTIONS[activeProduct.materialType]}
               </p>
             )}
             <ProductPolicyNotes />
@@ -123,8 +148,8 @@ function ProductCard({ product }) {
       </Modal>
 
       <ImageLightbox
-        src={product.image}
-        alt={product.name}
+        src={activeProduct.image}
+        alt={activeProduct.shopDisplayName || activeProduct.name}
         show={showLightbox}
         onHide={() => setShowLightbox(false)}
       />

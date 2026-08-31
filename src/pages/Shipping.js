@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { SHIPPING_BLURB } from '../data/shippingBlurb';
 import '../styles/pages.css';
 
-const LAST_UPDATED = 'July 20, 2026';
+const LAST_UPDATED = 'August 30, 2026';
 
 function Shipping() {
   return (
@@ -17,9 +17,9 @@ function Shipping() {
       </p>
 
       <p className="privacy-body">
-        Unfortunately, we can only ship within the United States at the moment. However, this is
-        not a permanent long-term decision as we hope to provide shipping options to other
-        international destinations in the future!
+        Unfortunately, because we are a small business, we can only ship within the United States
+        at the moment. However, this is not a permanent decision, as we hope to provide shipping
+        options to other international destinations in the future!
       </p>
 
       <h2 className="privacy-section-heading">Mail Carriers</h2>
@@ -29,9 +29,12 @@ function Shipping() {
 
       <h2 className="privacy-section-heading">Shipping Costs/Types</h2>
       <p className="privacy-body">
-        Sticker-only orders ship via standard USPS First-Class Mail. Orders containing pins,
-        prints, or sticker sheets ship via USPS Ground Advantage by default, with a faster
-        Priority Mail option available for an extra fee at checkout.
+        We offer Free Shipping for orders over $40.00 USD. Otherwise, you pay the shipping rate
+        that is calculated at checkout. Sticker-only orders ship via standard USPS First-Class
+        Mail. Orders containing pins, prints, or sticker sheets ship via USPS Ground Advantage by
+        default, with a faster Priority Mail option available for an extra fee at checkout. As we
+        continue to grow, we hope to provide you with even more shipping options in the near
+        future!
       </p>
 
       <h2 className="privacy-section-heading">Processing &amp; Shipping Time</h2>
@@ -43,35 +46,38 @@ function Shipping() {
         Once the tracking number is activated, you can track your order status through USPS.
       </p>
       <p className="privacy-body">
-        Holiday seasons and other events may increase processing and shipping times so please
+        Holiday seasons and other events may increase processing and shipping times, so please
         keep this in mind when placing your order.
       </p>
 
       <h2 className="privacy-section-heading">Can I get a refund if my order is delayed or lost in transit?</h2>
       <p className="privacy-body">
         We do not offer refunds on lost or delayed orders. Once your order is shipped from its
-        origin, it is in the hands of the postal service, and you will need to contact your local
-        postal office for further assistance. For questions regarding our refund policy,{' '}
-        <Link to="/returns" className="privacy-link">see our Return/Refund Policy</Link>.
+        place of origin, it is in the hands of the postal service, and you will need to contact
+        your local post office for further assistance. We can only issue full refunds with no
+        shipping fees if you request an order cancellation within the order's processing time.
+        For more information, please refer to our{' '}
+        <Link to="/returns" className="privacy-link">Return/Refund Policy</Link>.
       </p>
 
       <h2 className="privacy-section-heading">Do all orders get a tracking number?</h2>
       <p className="privacy-body">
-        Orders that include anything beyond stickers (pins, prints, or sticker sheets) ship in a
-        padded envelope or box with a printed shipping label, which includes a tracking number,
-        we'll pass that along to you once the label has been created. Orders of stickers only
-        ship in a standard stamped envelope; USPS doesn't provide tracking for First-Class Mail
-        letters, so those orders won't have a tracking number.
+        Orders that include anything beyond stickers (pins, prints, sticker sheets, etc.) are
+        shipped in a padded envelope or box with a printed shipping label, which includes a
+        tracking number. Once the label has been created, you will be notified when the tracking
+        number is activated. Orders of stickers only ship in a standard stamped envelope; USPS
+        does not provide a tracking number for First-Class Mail letters; however, we will notify
+        you once your order has been delivered to the post office.
       </p>
 
-      <h2 className="privacy-section-heading">Changes to Shipping Policy</h2>
+      <h2 className="privacy-section-heading">Changes to Our Shipping Policy</h2>
       <p className="privacy-body">
         We reserve the right to modify our shipping policy at any time without prior notice, so
         please review this frequently. Changes and clarifications will take effect immediately
         upon their posting on the website. If an order was placed before changes were made to the
-        shipping policy, we will honor the policy version your order was placed under at the time.
-        Your continued use of our website and services following the posting of any changes
-        constitutes your acceptance of the revised policy.
+        shipping policy, we will honor the version of the policy in effect at the time your order
+        was placed. Your continued use of our website and services following the posting of any
+        changes constitutes your acceptance and understanding of the revised policy.
       </p>
     </Container>
   );

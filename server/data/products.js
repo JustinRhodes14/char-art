@@ -53,7 +53,7 @@ const products = [
   { id: 27, name: 'Salted Almond Bread Roll - Acrylic Pin',        price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55qpI2spU6xgD' },
   { id: 28, name: 'Sausage Toast - Acrylic Pin',                   price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55ruqITkS5eVR' },
   { id: 29, name: 'Pizza Toast - Acrylic Pin',                     price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55rf9Wxj2f6Aa' },
-  { id: 30, name: 'Breakfast Memo Pads',                           price: 5.00,  inStock: true, shippingClass: 'package', materialType: 'memo-pad', stripeProductId: 'prod_V55rLWZuPeVjg8' },
+  { id: 30, name: 'Coffee & Pastries Memo Pad',                    price: 5.00,  inStock: true, shippingClass: 'package', materialType: 'memo-pad', stripeProductId: 'prod_V55rLWZuPeVjg8' },
   { id: 31, name: 'Fluffy Egg - Keychain',                         price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55rKE6pf7JJXG' },
   { id: 32, name: 'Bunny Coffee - Keychain',                       price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55rJrDOnuilpV' },
   { id: 33, name: 'Bleugh Coffee - Keychain',                      price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55r46g30fV7gU' },
@@ -61,6 +61,7 @@ const products = [
   { id: 35, name: 'Chef Bunny - Keychain',                         price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55r6WQanuA1Am' },
   { id: 36, name: 'Cute Poached Egg - Keychain',                   price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55r6rSB3wBTUF' },
   { id: 37, name: 'Blueberry Muffin - Keychain',                   price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55rCgAaInfIth' },
+  { id: 38, name: 'Egg, Toast, and Coffee Memo Pad',               price: 5.00,  inStock: true, shippingClass: 'package', materialType: 'memo-pad', stripeProductId: 'prod_VAhY6KN7yX5MPZ' },
 ];
 
 module.exports = { products };
