@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.efc0dca3.css",
-    "main.js": "/static/js/main.b2d3b9dd.js",
+    "main.css": "/static/css/main.ead72e75.css",
+    "main.js": "/static/js/main.a12bcdef.js",
     "static/js/453.9a666ab0.chunk.js": "/static/js/453.9a666ab0.chunk.js",
     "static/media/artist.jpeg": "/static/media/artist.0171610cd027cc7c1d02.jpeg",
     "static/media/carousel_art6.jpeg": "/static/media/carousel_art6.1a0ac30856ab9e864cf2.jpeg",
@@ -11,13 +11,13 @@
     "static/media/shop_art - 4.jpeg": "/static/media/shop_art - 4.bf201a56e4b55bcb9634.jpeg",
     "static/media/shop_art - 13.jpeg": "/static/media/shop_art - 13.9d4e674be6afe06ae37a.jpeg",
     "static/media/shop_art - 2.jpeg": "/static/media/shop_art - 2.7473fe60ab95fc76729b.jpeg",
+    "static/media/shop_notepad.JPG": "/static/media/shop_notepad.7316cccea9b795b384c0.JPG",
     "static/media/shop_art - 15.jpeg": "/static/media/shop_art - 15.f690f689377e74df733c.jpeg",
     "static/media/shop_art - 11.jpeg": "/static/media/shop_art - 11.b4db87a23debdae98b5e.jpeg",
     "static/media/shop_stickersheet3.JPG": "/static/media/shop_stickersheet3.2ba63c425f43ef97aaf9.JPG",
     "static/media/shop_stickersheet1.JPG": "/static/media/shop_stickersheet1.6ef8fd95cdab0c26cf3d.JPG",
     "static/media/shop_stickersheet2.JPG": "/static/media/shop_stickersheet2.87f83ffa07c191fdb72b.JPG",
     "static/media/shop_pin6.JPG": "/static/media/shop_pin6.60834db13c17cc704f32.JPG",
-    "static/media/shop_notepad.JPG": "/static/media/shop_notepad.1286b66560c75ddd2e15.JPG",
     "static/media/shop_pin12.JPG": "/static/media/shop_pin12.73d75294bdc1fb9b5c3d.JPG",
     "static/media/shop_pin11.JPG": "/static/media/shop_pin11.4f5e7d73cfb20d29816e.JPG",
     "static/media/shop_pin13.JPG": "/static/media/shop_pin13.97ccc4889e8f8c8240c5.JPG",
@@ -60,12 +60,12 @@
     "static/media/Sticker_1.PNG": "/static/media/Sticker_1.99a5b40df6ca89c2f2c2.PNG",
     "static/media/Sticker_5.PNG": "/static/media/Sticker_5.d7dfbd296f9ba6e0eee1.PNG",
     "index.html": "/index.html",
-    "main.efc0dca3.css.map": "/static/css/main.efc0dca3.css.map",
-    "main.b2d3b9dd.js.map": "/static/js/main.b2d3b9dd.js.map",
+    "main.ead72e75.css.map": "/static/css/main.ead72e75.css.map",
+    "main.a12bcdef.js.map": "/static/js/main.a12bcdef.js.map",
     "453.9a666ab0.chunk.js.map": "/static/js/453.9a666ab0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.efc0dca3.css",
-    "static/js/main.b2d3b9dd.js"
+    "static/css/main.ead72e75.css",
+    "static/js/main.a12bcdef.js"
   ]
 }
