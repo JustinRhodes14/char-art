@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import ShopGallery from '../components/ShopGallery';
 import '../styles/pages.css';
 import carouselArt1 from '../assets/images/carousel_art1.jpeg';
 import carouselArt2 from '../assets/images/carousel_art2.jpeg';
@@ -127,6 +128,9 @@ function Home() {
           </Link>
         </Col>
       </Row>
+
+      {/* New Photos */}
+      <ShopGallery embedded />
 
       {/* Gallery Section */}
       <Row className="mt-2 mb-2">

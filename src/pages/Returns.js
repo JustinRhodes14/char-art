@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../styles/pages.css';
 
-const LAST_UPDATED = 'August 30, 2026';
+const LAST_UPDATED = 'October 31, 2026';
 
 function Returns() {
   return (
@@ -55,6 +55,42 @@ function Returns() {
         <li>B-grade items</li>
         <li>Final Sale items</li>
         <li>Lost or delayed shipping orders</li>
+      </ul>
+
+      <h2 className="privacy-section-heading">Right to Refuse or Cancel Orders</h2>
+      <p className="privacy-body">
+        Parklofistudio reserves the right to accept or decline any orders, offers, applications,
+        or customers at its sole discretion for any or no cause. We reserve the right to not owe
+        an explanation. If an order is canceled, an email will be sent out to the customer
+        informing them of their order status/change, and a full refund will be issued within 1-3
+        business days. Some of the reasons, but not limited to, why an order is declined:
+      </p>
+      <ul className="privacy-list">
+        <li>
+          <strong>Inventory Shortages</strong>: An item or item(s) is currently out of stock, or
+          delayed by suppliers. In cases such as this, we would reach out to the customer to
+          either cancel the order, or find a replacement for said item(s).
+        </li>
+        <li>
+          <strong>Payment Failures</strong>: Either the transaction did not go through, the credit
+          card was declined, insufficient funds, or the transaction triggered a fraud alert.
+        </li>
+        <li>
+          <strong>Pricing/Data Error</strong>: Due to a website glitch or error on our part, an
+          item is mispriced, or there are mismatched shipping/billing details.
+        </li>
+        <li>
+          <strong>Risk/Fraud Control</strong>: If a customer has a history of payment fault with
+          us.
+        </li>
+        <li>
+          <strong>Capacity &amp; Scale Limits</strong>: If an order exceeds our production
+          capacity, inventory, labor, and/or time to fill the order.
+        </li>
+        <li>
+          <strong>Legal Right to Refuse</strong>: We reserve the right to decline orders before
+          they are filled AND the payment is accepted for any other reasons not listed above.
+        </li>
       </ul>
 
       <h2 className="privacy-section-heading">Refund Request Outside the 15-Day Policy</h2>

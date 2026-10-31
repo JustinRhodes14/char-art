@@ -48,7 +48,7 @@ const products = [
   { id: 22, name: 'Bunny Coffee - Acrylic Pin',                    price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55qnjUJcqSViJ' },
   { id: 23, name: 'Bleugh Coffee - Acrylic Pin',                   price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55qnctaoqDMlK' },
   { id: 24, name: 'Flustered Coffee - Acrylic Pin',                price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55qHoaTEgQlhQ' },
-  // { id: 25, name: 'Marinated Eggs - Acrylic Pin',                  price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin' },
+  { id: 25, name: 'Marinated Eggs - Acrylic Pin',                  price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_VXomsGvU1CbEzC' },
   { id: 26, name: 'Blueberry Muffin - Acrylic Pin',                price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55q2PSUjfKuIn' },
   { id: 27, name: 'Salted Almond Bread Roll - Acrylic Pin',        price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55qpI2spU6xgD' },
   { id: 28, name: 'Sausage Toast - Acrylic Pin',                   price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_V55ruqITkS5eVR' },
@@ -62,6 +62,8 @@ const products = [
   { id: 36, name: 'Cute Poached Egg - Keychain',                   price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55r6rSB3wBTUF' },
   { id: 37, name: 'Blueberry Muffin - Keychain',                   price: 7.00,  inStock: true, shippingClass: 'package', materialType: 'keychain', stripeProductId: 'prod_V55rCgAaInfIth' },
   { id: 38, name: 'Egg, Toast, and Coffee Memo Pad',               price: 5.00,  inStock: true, shippingClass: 'package', materialType: 'memo-pad', stripeProductId: 'prod_VAhY6KN7yX5MPZ' },
+  { id: 39, name: 'Baked Eggs - Acrylic Pin',                      price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_VXnNBXu1Ll2ojd' },
+  { id: 40, name: 'Sunny Side-Up - Acrylic Pin',                   price: 6.00,  inStock: true, shippingClass: 'package', materialType: 'pin', stripeProductId: 'prod_VXnOhctApWtYvt' },
 ];
 
 module.exports = { products };

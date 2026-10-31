@@ -193,6 +193,175 @@
   padding: 0.6rem 1rem;
 }
 
+/* ─── Shop Gallery (new photos carousel) ─── */
+.shop-gallery {
+  background-color: var(--lofi-cream);
+  border-bottom: 3px dashed var(--lofi-honey);
+  padding: 3rem 0;
+}
+
+.shop-gallery-eyebrow {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.1rem;
+  color: var(--lofi-strawberry);
+  margin-bottom: 0.2rem;
+}
+
+.shop-gallery-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 2.8rem;
+  color: var(--lofi-chocolate);
+  text-shadow: 2px 2px 0px var(--lofi-honey);
+  margin-bottom: 0.75rem;
+}
+
+.shop-gallery-intro {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--lofi-chocolate);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.shop-gallery-note {
+  background-color: var(--lofi-honey);
+  border: 2px solid var(--lofi-mocha);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  transform: rotate(-1deg);
+  box-shadow: 3px 3px 0 var(--lofi-mocha);
+}
+
+.shop-gallery-note-title {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.5rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.25rem;
+}
+
+.shop-gallery-note-category {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  color: var(--lofi-mocha);
+}
+
+.shop-gallery-note-body {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  color: var(--lofi-chocolate);
+  margin-bottom: 0.5rem;
+  min-height: 3em;
+}
+
+.shop-gallery-link {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.15rem;
+  color: var(--lofi-chocolate);
+  text-decoration: none;
+  border-bottom: 2px dotted var(--lofi-chocolate);
+}
+
+.shop-gallery-link:hover {
+  color: var(--lofi-strawberry);
+  border-bottom-color: var(--lofi-strawberry);
+}
+
+.shop-gallery-signoff {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.2rem;
+  color: var(--lofi-mocha);
+  margin: 0;
+}
+
+/* Polaroid-ish frame with a strip of tape on top */
+.shop-gallery-frame {
+  position: relative;
+  background-color: var(--lofi-cream);
+  border: 0.6rem solid var(--lofi-mocha);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  max-width: 460px;
+  margin: 0 auto;
+  transform: rotate(1.5deg);
+}
+
+.shop-gallery-tape {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 110px;
+  height: 30px;
+  transform: translateX(-50%) rotate(-3deg);
+  background-color: var(--lofi-honey);
+  opacity: 0.85;
+  z-index: 3;
+  border-radius: 3px;
+}
+
+.shop-gallery-carousel {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.shop-gallery-image {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 55%;
+  background-color: var(--lofi-cream);
+}
+
+.shop-gallery-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 2.4rem;
+  transform: translateX(-50%) rotate(-2deg);
+  background-color: var(--lofi-cream);
+  color: var(--lofi-chocolate);
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.15rem;
+  white-space: nowrap;
+  padding: 0.2rem 0.9rem;
+  border: 2px solid var(--lofi-mocha);
+  border-radius: 999px;
+}
+
+.shop-gallery-carousel .carousel-control-prev,
+.shop-gallery-carousel .carousel-control-next {
+  background: var(--lofi-mocha);
+  opacity: 0.8;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.shop-gallery-carousel .carousel-control-prev { left: 10px; }
+.shop-gallery-carousel .carousel-control-next { right: 10px; }
+
+.shop-gallery-carousel .carousel-indicators [data-bs-target] {
+  background-color: var(--lofi-cream);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--lofi-mocha);
+}
+
+.shop-gallery--embedded {
+  border: 3px dashed var(--lofi-honey);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 767px) {
+  .shop-gallery { padding: 2.5rem 0 2rem; }
+  .shop-gallery-heading { font-size: 2.2rem; }
+  .shop-gallery-frame { transform: none; }
+  .shop-gallery-caption { font-size: 1rem; }
+  .shop-gallery--embedded { padding: 2rem 1rem; }
+}
+
 /* ─── Category Pills ─── */
 .shop-category-row {
   display: flex;

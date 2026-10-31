@@ -22,11 +22,15 @@ import art21 from '../assets/artwork/shop/shop_stickersheet1.JPG';
 import art22 from '../assets/artwork/shop/shop_pin2.JPG';
 import art23 from '../assets/artwork/shop/shop_pin12.JPG';
 import art24 from '../assets/artwork/shop/shop_pin13.JPG';
+import art25 from '../assets/artwork/shop/shop_pin16.JPG';
 import art26 from '../assets/artwork/shop/shop_pin11.JPG';
 import art27 from '../assets/artwork/shop/shop_pin6.JPG';
 import art28 from '../assets/artwork/shop/shop_pin1.JPG';
 import art29 from '../assets/artwork/shop/shop_pin3.JPG';
 import art30 from '../assets/artwork/shop/shop_notepad.JPG';
+import art38 from '../assets/artwork/shop/shop_notepad2.JPG';
+import art39 from '../assets/artwork/shop/shop_pin14.JPG';
+import art40 from '../assets/artwork/shop/shop_pin15.JPG';
 import art31 from '../assets/artwork/shop/shop_keychain5.JPG';
 import art32 from '../assets/artwork/shop/shop_keychain6.JPG';
 import art33 from '../assets/artwork/shop/shop_keychain3.JPG';
@@ -270,6 +274,32 @@ export const products = [
     dateAdded: '2026-08-15',
   },
   {
+    id: 39,
+    name: 'Baked Eggs',
+    category: 'pin',
+    description: 'Freshly baked eggs right out of the oven. Perfectly-baked, yet fluffy and runny. Think it’s a little crowded in there?',
+    price: 6.00,
+    image: art39,
+    dimensions: '2.5"',
+    medium: 'Acrylic pin',
+    materialType: 'pin',
+    inStock: true,
+    dateAdded: '2026-10-31',
+  },
+  {
+    id: 40,
+    name: 'Sunny Side-Up',
+    category: 'pin',
+    description: 'Cozy, perfectly cooked sunny side-up egg. The most egg there is. That is one very, very delightful egg!',
+    price: 6.00,
+    image: art40,
+    dimensions: '2.5"',
+    medium: 'Acrylic pin',
+    materialType: 'pin',
+    inStock: true,
+    dateAdded: '2026-10-31',
+  },
+  {
     id: 5,
     name: 'Sunny Side-Up',
     category: 'vinyl sticker',
@@ -440,18 +470,19 @@ export const products = [
     inStock: true,
     dateAdded: '2026-08-15',
   },
-  // {
-  //   id: 25,
-  //   name: 'Marinated Eggs',
-  //   category: 'pin',
-  //   description: 'An egg’s speciality tan consists of soy sauce, chopped chilies, spring onions, and sesame oil. Be careful to not get them too tanned!',
-  //   price: 6.00,
-  //   dimensions: '2"',
-  //   medium: 'Pin',
-  //   materialType: 'pin',
-  //   inStock: true,
-  //   dateAdded: '2026-08-15',
-  // },
+  {
+    id: 25,
+    name: 'Marinated Eggs',
+    category: 'pin',
+    description: 'An egg’s speciality tan consists of soy sauce, chopped chilies, spring onions, and sesame oil. Be careful to not get them too tanned!',
+    price: 6.00,
+    image: art25,
+    dimensions: '2.5"',
+    medium: 'Acrylic pin',
+    materialType: 'pin',
+    inStock: true,
+    dateAdded: '2026-10-31',
+  },
   {
     id: 30,
     name: 'Coffee & Pastries Memo Pad',
@@ -474,7 +505,7 @@ export const products = [
     category: 'memo pad',
     description: 'These adorable notepads have a light sticky adhesive, making it perfect for delicate surfaces without leaving any traces of it behind, or lifting something up with it! Annotating papers? Notes for your notebook? Journaling? Grocery lists? Quick reminders? This memo pad is just right for you!',
     price: 5.00,
-    image: art30,
+    image: art38,
     dimensions: '3.25" x 3.25"',
     medium: 'Memo pad',
     materialType: 'memo-pad',
